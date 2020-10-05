@@ -60,9 +60,6 @@ C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\bin\Debug\netcoreapp3
 C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3.1\VandenEynde.csprojAssemblyReference.cache
 C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3.1\VandenEynde.AssemblyInfoInputs.cache
 C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3.1\VandenEynde.AssemblyInfo.cs
-C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3.1\VandenEynde.csproj.CoreCompileInputs.cache
-C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3.1\VandenEynde.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3.1\VandenEynde.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3.1\VandenEynde.RazorAssemblyInfo.cache
 C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3.1\VandenEynde.RazorAssemblyInfo.cs
 C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3.1\VandenEynde.TagHelpers.input.cache
@@ -86,3 +83,9 @@ C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3
 C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3.1\VandenEynde.dll
 C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3.1\VandenEynde.pdb
 C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3.1\VandenEynde.genruntimeconfig.cache
+C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\bin\Debug\netcoreapp3.1\MySqlConnector.dll
+C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\bin\Debug\netcoreapp3.1\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\bin\Debug\netcoreapp3.1\Pomelo.JsonObject.dll
+C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3.1\VandenEynde.csproj.CoreCompileInputs.cache
+C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3.1\VandenEynde.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\jens\source\repos\VDESite\VandenEynde\VandenEynde\obj\Debug\netcoreapp3.1\VandenEynde.MvcApplicationPartsAssemblyInfo.cache
