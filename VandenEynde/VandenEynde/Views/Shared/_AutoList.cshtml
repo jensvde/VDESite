@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Domain.Auto>
+
+
+<script src="js/search.js"></script>
+
+<table class="table" id="table">
+    <tr>
+        <!-- Search form -->
+        <div class="md-form mt-0">
+          <input class="form-control" id="search" type="text" placeholder="Search" aria-label="Search">
+        </div>
+    </tr>
+    <tr >
+        <th>Naam</th>
+        <th class="text-center-auto">Bouwjaar</th>
+        <th>Olie inhoud</th>
+        <th>Cylinder inhoud</th>
+        <th>Vermogen (KW)</th>
+        <th>Motorcode</th>
+        <th>Banden</th>
+    </tr>
+    @foreach (Domain.Auto auto in Model.ToList().OrderBy(auto => auto.Naam))
+    {
+        <tr class="text-auto-even">
+            <td><a class="text-auto-even"
+                   asp-area="" asp-controller="Auto"
+                   asp-action="Details" asp-route-id="@auto.AutoId">@auto.Naam</a></td>
+            <td class="text-center-auto">
+                <a class="text-auto-even" style="text-align: center"
+                   asp-area="" asp-controller="Auto"
+                   asp-action="Details" asp-route-id="@auto.AutoId"
+                   id="">@auto.Bouwjaar</a>
+            </td>
+            <td><a class="text-auto-even" asp-area="" asp-controller="Auto" asp-action="Details" asp-route-id="@auto.AutoId">@auto.OlieInhoud</a></td>
+            <td><a class="text-auto-even" asp-area="" asp-controller="Auto" asp-action="Details" asp-route-id="@auto.AutoId">@auto.CylinderInhoud</a></td>
+            <td><a class="text-auto-even" asp-area="" asp-controller="Auto" asp-action="Details" asp-route-id="@auto.AutoId">@auto.VermogenKw</a></td>
+            <td><a class="text-auto-even" asp-area="" asp-controller="Auto" asp-action="Details" asp-route-id="@auto.AutoId">@auto.MotorCode</a></td>
+            <td><a class="text-auto-even" asp-area="" asp-controller="Auto" asp-action="Details" asp-route-id="@auto.AutoId">@auto.Banden</a></td>
+        </tr>
+    }
+</table> 

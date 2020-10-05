@@ -1,0 +1,40 @@
+﻿@model Domain.Auto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>@Model.Naam</h2>
+<p>Bekijk of bewerk de details voor dit voertuig.</p>
+<form asp-controller="Auto" asp-action="Edit" asp-route-id="@Model.AutoId" method="post">
+    <div class="div-container">
+        <div class="div-left">
+            <dl class="dl-horizontal">
+                <dt class="dd-dt"><label for="AutoId">AutoId</label></dt><dd class="dd-dt">@Model.AutoId</dd>
+                <dt class="dd-dt"><label for="Naam">Naam</label></dt><dd class="dd-dt"><input asp-for="Naam" class="inputdetails"></input></dd>
+                <dt class="dd-dt"><label for="Bouwjaar">Bouwjaar</label></dt><dd class="dd-dt"><input asp-for="Bouwjaar" class="inputdetails"></input></dd>
+                <dt class="dd-dt"><label for="Banden">Banden</label></dt><dd class="dd-dt"><input asp-for="Banden" class="inputdetails"></input></dd>
+            </dl>
+        </div>
+        &nbsp;
+        <div class="div-right">
+
+            <dl class="dl-horizontal">
+                <dt class="dd-dt"><label for="OlieInhoud">Olie inhoud</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="OlieInhoud"></dd>
+                <dt class="dd-dt"><label for="CylinderInhoud">Cylinder inhoud</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="CylinderInhoud"></dd>
+                <dt class="dd-dt"><label for="VermogenKw">Vermogen (KW)</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="VermogenKw"></dd>
+                <dt class="dd-dt"><label for="MotorCode">Motorcode</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="MotorCode">></dd>
+            </dl>
+        </div>
+    </div>
+<div class="div-buttons">
+    <input type="submit" value="Opslaan" class="btn btn-default"/>&nbsp;&nbsp;&nbsp;
+    <a class="btn btn-default" asp-controller="Auto" asp-action="" type="Submit" asp-route-id="@Model.AutoId">Verwijder</a>
+</div>
+    </form>
+
+
+@Html.Partial("_OnderdeelList", Model.Onderdelen)
+
+@Html.Partial("_WerkList", Model.WerkVoorAuto)

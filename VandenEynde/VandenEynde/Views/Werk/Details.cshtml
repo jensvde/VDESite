@@ -1,0 +1,38 @@
+﻿@using Domain
+@using VandenEynde.Controllers
+@model Domain.Werk
+
+@{
+    ViewBag.Title = @Model.Auto.Naam;
+    Layout = "_Layout";
+}
+
+<h2>Werk @Model.WerkId</h2>
+<p>Bekijk of bewerk dit historiek item.</p>
+<form asp-controller="Werk" asp-action="Edit" asp-route-id="@Model,@ViewBag.AutoId" method="post">
+    <div class="div-container">
+        <div class="div-left">
+            <dl class="dl-horizontal">
+                <dt class="dd-dt"><label for="WerkId">WerkId</label></dt><dd class="dd-dt"><input asp-for="WerkId" class="inputdetails" readonly></input></dd>
+                <dt class="dd-dt"><label for="Datum">Datum</label></dt><dd class="dd-dt"><input asp-for="Datum" class="inputdetails"></input></dd>
+                <dt class="dd-dt"><label for="KilometerStand">Kilometerstand</label></dt><dd class="dd-dt"><input asp-for="KilometerStand" class="inputdetails"></input></dd>
+                <dt class="dd-dt"> <label for="Extra">Opmerkingen</label></dt><dd class="dd-dt"><textarea  asp-for="Extra" cols="40" rows="5" class="inputdetails"></textarea ></dd>
+            </dl>
+        </div>
+        &nbsp;
+        <div class="div-right">
+
+            <dl class="dl-horizontal">
+                <dt class="dd-dt"><label for="Auto.AutoId">Auto</label></dt><dd class="dd-dt">@Model.Auto.Naam</dd>
+                <dt class="dd-dt"><label for="OliefilterVervangen">Olie filter</label></dt><dd class="dd-dt"><input type="checkbox" name="OliefilterVervangen" checked=@Model.OliefilterVervangen class="inputdetails" asp-for="OliefilterVervangen"></dd>
+                <dt class="dd-dt"><label for="LuchtfilterVervangen">Lucht filter</label></dt><dd class="dd-dt"><input type="checkbox" name="LuchtfilterVervangen" checked=@Model.LuchtfilterVervangen class="inputdetails" asp-for="LuchtfilterVervangen"></dd>
+                <dt class="dd-dt"><label for="BrandstoffilterVervangen">Brandstof filter</label></dt><dd class="dd-dt"><input type="checkbox" name="BrandstoffilterVervangen" checked=@Model.BrandstoffilterVervangen class="inputdetails" asp-for="BrandstoffilterVervangen"></dd>
+                <dt class="dd-dt"><label for="InterieurfilterVervangen">Interieur filter</label></dt><dd class="dd-dt"><input type="checkbox" name="InterieurfilterVervangen" checked=@Model.InterieurfilterVervangen class="inputdetails" asp-for="InterieurfilterVervangen"></dd>
+            </dl>
+        </div>
+    </div>
+    <div class="div-buttons">
+        <input type="submit" value="Opslaan" class="btn btn-default"/>&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-default" asp-controller="Werk" asp-action="Delete" type="Submit" asp-route-id="@Model.WerkId">Verwijder</a>&nbsp;&nbsp;&nbsp;
+        </div>
+</form>

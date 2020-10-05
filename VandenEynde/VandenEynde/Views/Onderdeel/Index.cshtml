@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Domain.Onderdeel>
+
+@{
+    ViewBag.Title = "Onderdelen";
+    Layout = "_Layout";
+}
+<h2 class="float-left">Onderdelen</h2><a class="btn btn-primary float-right" asp-area="" asp-controller="Onderdeel" asp-action="Add" >Nieuw</a>
+@Html.Partial("_OnderdeelList", Model)

@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Domain.Auto>
+
+@{
+    ViewBag.Title = "Auto's";
+    Layout = "_Layout";
+}
+<h2 class="float-left">Auto's</h2><a class="btn btn-primary float-right" asp-area="" asp-controller="Auto" asp-action="Add" >Nieuw</a>
+@Html.Partial("_AutoList", Model)
+    

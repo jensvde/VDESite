@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "iThs1uePoyIQoA23ft0VOaf7nGqzFmlUo9eZgSps5pp4GGNW7aZCmCnOyilpPmnO2dzobIPPV0YNGiQ1V6DYjw==",
+  "dgSpecHash": "OomUlOvJL60unh16UOWfKtDHRQYFLgcB6CinVZiUiUyhDpwEahJfVkyOU0yQl0xgbOW/MXFKkG6oO83gAGrteg==",
   "success": true,
   "projectFilePath": "C:\\Users\\jens\\source\\repos\\VDESite\\VandenEynde\\VandenEynde\\VandenEynde.csproj",
   "expectedPackageFiles": [
@@ -33,6 +33,7 @@
     "C:\\Users\\jens\\.nuget\\packages\\microsoft.extensions.identity.stores\\3.1.4\\microsoft.extensions.identity.stores.3.1.4.nupkg.sha512",
     "C:\\Users\\jens\\.nuget\\packages\\microsoft.extensions.logging\\3.1.8\\microsoft.extensions.logging.3.1.8.nupkg.sha512",
     "C:\\Users\\jens\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.8\\microsoft.extensions.logging.abstractions.3.1.8.nupkg.sha512",
+    "C:\\Users\\jens\\.nuget\\packages\\microsoft.extensions.logging.debug\\3.1.8\\microsoft.extensions.logging.debug.3.1.8.nupkg.sha512",
     "C:\\Users\\jens\\.nuget\\packages\\microsoft.extensions.options\\3.1.8\\microsoft.extensions.options.3.1.8.nupkg.sha512",
     "C:\\Users\\jens\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.8\\microsoft.extensions.primitives.3.1.8.nupkg.sha512",
     "C:\\Users\\jens\\.nuget\\packages\\microsoft.identity.client\\3.0.8\\microsoft.identity.client.3.0.8.nupkg.sha512",

@@ -1,0 +1,35 @@
+﻿@using System.Linq
+@model AutosOnderdeel
+
+@{
+    ViewBag.Title = "@Model.Beschrijving";
+    Layout = "_Layout";
+}
+
+<h2>Nieuw onderdeel</h2>
+<p>Maak een nieuw onderdeel aan.</p>
+<form asp-controller="Onderdeel" asp-action="Add" method="post">
+<div class="div-container">
+    <div class="div-left">
+        <dl class="dl-horizontal">
+            <dt class="dd-dt"><label for="id">Geschikt voor</label></dt><dd class="dd-dt"><select asp-for="id" asp-items="Model.Items"></select> </dd>
+            <dt class="dd-dt"> <label for="Onderdeel.BestelNr">Bestel nummer</label></dt><dd class="dd-dt"><textarea  asp-for="Onderdeel.BestelNr" cols="40" rows="5" class="inputdetails"></textarea ></dd>
+
+        </dl>
+    </div>
+    &nbsp;
+    <div class="div-right">
+
+        <dl class="dl-horizontal">
+                <dt class="dd-dt"><label for="Onderdeel.Merk">Merk</label></dt><dd class="dd-dt"><input asp-for="Onderdeel.Merk" class="inputdetails"></input></dd>
+
+<dt class="dd-dt"> <label for="Onderdeel.Beschrijving"> Beschrijving</label></dt><dd class="dd-dt"><textarea  asp-for="Onderdeel.Beschrijving" cols="40" rows="6" class="inputdetails"></textarea >
+
+        </dl>
+    </div>
+</div>
+    <div class="div-buttons">
+                <input type="submit" value="Opslaan" class="btn btn-default"/>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-default" asp-area="" asp-controller="Onderdeel" asp-action="Delete" asp-route-id="@Model.Onderdeel.OnderdeelId">Verwijder</a>
+    </div>
+</form>

@@ -38,6 +38,15 @@ namespace VandenEynde
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddMvc().AddRazorOptions(options =>
+            {
+                options.PageViewLocationFormats
+                    .Add("/Views/Shared/_OnderdeelList.cshtml");
+                options.PageViewLocationFormats
+                    .Add("/Views/Shared/_WerkList.cshtml");
+                options.PageViewLocationFormats
+                    .Add("/Views/Shared/_AutoList.cshtml");
+            });
             services.Configure<ForwardedHeadersOptions>(options =>
             {
                 options.KnownProxies.Add(IPAddress.Parse("35.210.167.58"));

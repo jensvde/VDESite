@@ -1,0 +1,37 @@
+﻿@using Domain
+@using VandenEynde.Controllers
+@model AutosWerk
+
+@{
+    ViewBag.Title = "Nieuw werk";
+    Layout = "_Layout";
+}
+
+<h2>Nieuw werk</h2>
+<p>Maak een nieuw werk item aan.</p>
+<form asp-controller="Werk" asp-action="Add" asp-route-id="@Model" method="post">
+    <div class="div-container">
+        <div class="div-left">
+            <dl class="dl-horizontal">
+                <dt class="dd-dt"><label for="id">Auto</label></dt><dd class="dd-dt"><select asp-for="id" asp-items="Model.Items"></select> </dd>
+                <dt class="dd-dt"><label for="Werk.Datum">Datum</label></dt><dd class="dd-dt"><input asp-for="Werk.Datum" class="inputdetails"></input></dd>
+                <dt class="dd-dt"><label for="Werk.KilometerStand">Kilometerstand</label></dt><dd class="dd-dt"><input asp-for="Werk.KilometerStand" class="inputdetails"></input></dd>
+                <dt class="dd-dt"> <label for="Werk.Extra">Opmerkingen</label></dt><dd class="dd-dt"><textarea  asp-for="Werk.Extra" cols="40" rows="5" class="inputdetails"></textarea ></dd>
+            </dl>
+        </div>
+        &nbsp;
+        <div class="div-right">
+
+            <dl class="dl-horizontal">
+                <dt class="dd-dt"><label for="Werk.OliefilterVervangen">Olie filter</label></dt><dd class="dd-dt"><input type="checkbox" name="Werk.OliefilterVervangen" class="inputdetails" asp-for="Werk.OliefilterVervangen"></dd>
+                <dt class="dd-dt"><label for="Werk.LuchtfilterVervangen">Lucht filter</label></dt><dd class="dd-dt"><input type="checkbox" name="Werk.LuchtfilterVervangen" class="inputdetails" asp-for="Werk.LuchtfilterVervangen"></dd>
+                <dt class="dd-dt"><label for="Werk.BrandstoffilterVervangen">Brandstof filter</label></dt><dd class="dd-dt"><input type="checkbox" name="Werk.BrandstoffilterVervangen"  class="inputdetails" asp-for="Werk.BrandstoffilterVervangen"></dd>
+                <dt class="dd-dt"><label for="Werk.InterieurfilterVervangen">Interieur filter</label></dt><dd class="dd-dt"><input type="checkbox" name="Werk.InterieurfilterVervangen" class="inputdetails" asp-for="Werk.InterieurfilterVervangen"></dd>
+            </dl>
+        </div>
+    </div>
+    <div class="div-buttons">
+        <input type="submit" value="Opslaan" class="btn btn-default"/>&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-default" asp-controller="Onderdeel" asp-action="Index" type="Submit">Annuleren</a>&nbsp;&nbsp;&nbsp;
+        </div>
+</form>

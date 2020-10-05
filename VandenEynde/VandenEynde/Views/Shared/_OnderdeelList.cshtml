@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Domain.Onderdeel>
+
+
+<table class="table">
+    <tr >
+        <th>Id</th>
+        <th>Beschrijving</th>
+        <th>Merk</th>
+        <th>Bestel nummer</th>
+    </tr>
+    @foreach (Domain.Onderdeel onderdeel in Model)
+    {
+        <tr class="text-auto-even">
+            <td><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@onderdeel.OnderdeelId</a></td>
+            <td><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@onderdeel.Beschrijving</a></td>
+            <td><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@onderdeel.Merk</a></td>
+            <td><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@onderdeel.BestelNr</a></td>
+        </tr>
+    }
+</table>
+

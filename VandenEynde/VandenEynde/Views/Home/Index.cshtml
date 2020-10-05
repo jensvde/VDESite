@@ -1,8 +1,58 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model HomeModel
+@{
+    ViewData["Title"] = "Startpagina";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Van den Eynde</h1>
+    <p>Welkom op het inventaris systeem.</p>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <h2>Auto's</h2>
+        <p>Beheer uw auto's.</p>
+        <a class="btn btn-default" asp-area="" asp-controller="Auto" asp-action="Index">Ga naar auto's</a>
+    </div>
+    <div class="col-md-4">
+        <h2>Onderdelen</h2>
+        <p>Beheer uw onderdelen.</p>
+        <a class="btn btn-default" asp-area="" asp-controller="Onderdeel" asp-action="Index">Ga naar onderdelen</a>
+    </div>
+    <div class="col-md-4">
+        <h2>Werk</h2>
+        <p>Beheer uw werk.</p>
+        <a class="btn btn-default" asp-area="" asp-controller="Werk" asp-action="Index">Ga naar werk</a>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <h2>Bekijk auto</h2>
+        <form asp-controller="Auto" asp-action="Details" method="get">
+            <label for="Id">Bekijk de details van een auto.</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <select asp-for="Id" asp-items="Model.Items"></select>
+            <input type="submit" value="Ga" class="btn btn-default" />
+        </form>
+    </div>
+    <div class="col-md-4">
+        <h2>Bekijk onderdelen</h2>
+        <form asp-controller="Onderdeel" asp-action="Index" method="post">
+            <label for="Id">Bekijk de onderdelen voor een auto.</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <select asp-for="Id" asp-items="Model.Items"></select>
+            <input type="submit" value="Ga" class="btn btn-default" />
+        </form>
+    </div>
+    <div class="col-md-4">
+        <h2>Bekijk werk</h2>
+        <form asp-controller="Werk" asp-action="Index" method="post">
+            <label for="Id">Bekijk het werk voor een auto.</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <select asp-for="Id" asp-items="Model.Items"></select>
+            <input type="submit" value="Ga" class="btn btn-default" />
+        </form>
+    </div>
 </div>
