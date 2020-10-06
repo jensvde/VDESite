@@ -13,7 +13,7 @@ namespace DAL.EF
         public AutoRepository()
         {
             ctx = new VandenEyndeDbContext();
-            VandenEyndeDbContext.Initialize(ctx, dropCreateDatabase: true);
+            //VandenEyndeDbContext.Initialize(ctx, dropCreateDatabase: true);
         }
         public Auto CreateAuto(Auto auto)
         {
