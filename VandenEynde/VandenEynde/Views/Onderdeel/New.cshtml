@@ -5,14 +5,14 @@
     Layout = "_Layout";
 }
 
-<h2>Nieuw onderdeel voor @Model.Auto.Naam</h2>
+<h2>Nieuw onderdeel voor</h2>
 <p>Maak een nieuw onderdeel aan.</p>
 <form asp-controller="Onderdeel" asp-action="New" method="post">
     <div class="div-container">
         <div class="div-left">
             <dl class="dl-horizontal">
-                <dt class="dd-dt"><label for="Merk">Merk</label></dt><dd class="dd-dt"><input asp-for="Merk" class="inputdetails"></input></dd>
-                        <dt class="dd-dt"> <label for="BestelNr">Bestel nummer</label></dt><dd class="dd-dt"><textarea  asp-for="BestelNr" cols="40" rows="5" class="inputdetails"></textarea ></dd>
+                <dt class="dd-dt"><label for="Merk">Merk</label></dt><dd class="dd-dt"><input asp-for="Merk" class="inputdetails"/></dd>
+                        <dt class="dd-dt"> <label for="Bestelnummer.Bestelnr">Bestel nummer</label></dt><dd class="dd-dt"><textarea  asp-for="Bestelnummers.First()" cols="40" rows="5" class="inputdetails"></textarea ></dd>
 
 
             </dl>

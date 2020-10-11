@@ -1,8 +1,7 @@
-﻿using System.Collections;
+﻿using Domain;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using Domain;
-using Microsoft.EntityFrameworkCore;
 
 namespace DAL.EF
 {
@@ -13,7 +12,7 @@ namespace DAL.EF
         public AutoRepository()
         {
             ctx = new VandenEyndeDbContext();
-            //VandenEyndeDbContext.Initialize(ctx, dropCreateDatabase: true);
+            VandenEyndeDbContext.Initialize(ctx, dropCreateDatabase: true);
         }
         public Auto CreateAuto(Auto auto)
         {
@@ -24,13 +23,13 @@ namespace DAL.EF
 
         public IEnumerable<Auto> ReadAutos()
         {
-            IEnumerable<Auto> autos = ctx.Autos.Include(e => e.Onderdelen).Include(e => e.WerkVoorAuto).AsEnumerable();
+            IEnumerable<Auto> autos = ctx.Autos.Include(u => u.AutoOnderdelen).Include(u => u.WerkVoorAuto).AsEnumerable();
             return autos;
         }
 
         public IEnumerable<Onderdeel> ReadOnderdelen()
         {
-            return ctx.Onderdelen.Include(e => e.Auto).AsEnumerable();
+            return ctx.Onderdelen.Include(e => e.Bestelnummers).Include(e => e.AutoOnderdelen).AsEnumerable();
         }
 
         public IEnumerable<Werk> ReadWerken()
@@ -46,7 +45,7 @@ namespace DAL.EF
             return auto;*/
 
             return ctx.Autos
-                .Include(auto => auto.Onderdelen)
+                .Include(auto => auto.AutoOnderdelen)
                 .Include(auto => auto.WerkVoorAuto)
                 .Single(auto => auto.AutoId == autoId);
         }
@@ -57,23 +56,13 @@ namespace DAL.EF
             ctx.SaveChanges();
         }
 
-        public void DeleteAuto(int autoId)
+        public void DeleteAuto(Auto auto)
         {
-            Auto auto = ctx.Autos.Include(e => e.Onderdelen).Include(e => e.WerkVoorAuto)
-                .Single(e => e.AutoId == autoId);
-            ctx.Onderdelen.RemoveRange(auto.Onderdelen);
-            ctx.Werken.RemoveRange(auto.WerkVoorAuto);
+
             ctx.Autos.Remove(auto);
             ctx.SaveChanges();
         }
 
-        public IEnumerable<Onderdeel> GetOnderdelenVanAuto(int autoId)
-        {
-            IEnumerable<Onderdeel> foundOnderdelen = ctx.Onderdelen
-                .Where(x => x.Auto.AutoId == autoId)
-                .ToList();
-            return foundOnderdelen;
-        }
 
         public Onderdeel CreateOnderdeel(Onderdeel onderdeel)
         {
@@ -94,11 +83,6 @@ namespace DAL.EF
             ctx.SaveChanges();
         }
 
-        public IEnumerable<Werk> GetWerkVoorAuto(int autoId)
-        {
-            IEnumerable<Werk> foundWerk = ctx.Werken.Where(x => x.Auto.AutoId == autoId);
-            return foundWerk;
-        }
 
         public Werk CreateWerk(Werk werk)
         {
@@ -109,7 +93,7 @@ namespace DAL.EF
 
         public Onderdeel ReadOnderdeel(int id)
         {
-            return ctx.Onderdelen.Single(x => x.OnderdeelId == id);
+            return ctx.Onderdelen.Include(e => e.Bestelnummers).Include(e => e.AutoOnderdelen).Single(x => x.OnderdeelId == id);
         }
 
         public Werk ReadWerk(int id)
@@ -127,6 +111,33 @@ namespace DAL.EF
         {
             ctx.Werken.Remove(werk);
             ctx.SaveChanges();
+        }
+        public IEnumerable<OnderdeelBestelnummer> ReadonderdeelBestelnummers()
+        {
+            return ctx.Bestelnummers.Include(e => e.Onderdeel).AsEnumerable();
+        }
+        public OnderdeelBestelnummer ReadOnderdeelBestelnummer(int id)
+        {
+            return ctx.Bestelnummers.Include(e => e.Onderdeel).Single(x => x.BestelnummerId == id);
+        }
+
+        public void UpdateOnderdeelBestelnummer(OnderdeelBestelnummer onderdeelBestelnummer)
+        {
+            ctx.Bestelnummers.Update(onderdeelBestelnummer);
+            ctx.SaveChanges();
+        }
+
+        public void DeleteOnderdeelBestelnummer(OnderdeelBestelnummer onderdeelBestelnummer)
+        {
+            ctx.Bestelnummers.Remove(onderdeelBestelnummer);
+            ctx.SaveChanges();
+        }
+
+        public OnderdeelBestelnummer CreateOnderdeelBestelnummer(OnderdeelBestelnummer onderdeelBestelnummer)
+        {
+            ctx.Bestelnummers.Add(onderdeelBestelnummer);
+            ctx.SaveChanges();
+            return onderdeelBestelnummer;
         }
     }
 }

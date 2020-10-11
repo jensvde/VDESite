@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain
 {
@@ -9,10 +7,11 @@ namespace Domain
     {
         [Key]
         public int OnderdeelId { get; set; }
-        
-        public virtual Auto Auto { get; set; }
+
         public string Beschrijving { get; set; }
         public string Merk { get; set; }
-        public string BestelNr { get; set; }
+        public virtual ICollection<OnderdeelBestelnummer> Bestelnummers { get; set; }
+        public virtual ICollection<AutoOnderdeel> AutoOnderdelen { get; set; }
+
     }
 }

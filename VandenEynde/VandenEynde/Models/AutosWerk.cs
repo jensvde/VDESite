@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Domain;
+﻿using Domain;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace VandenEynde.Models
 {

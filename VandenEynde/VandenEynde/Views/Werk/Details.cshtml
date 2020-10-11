@@ -3,19 +3,22 @@
 @model Domain.Werk
 
 @{
-    ViewBag.Title = @Model.Auto.Naam;
+    ViewBag.Title = "Werk - " + @Model.Auto.Naam;
     Layout = "_Layout";
 }
-
-<h2>Werk @Model.WerkId</h2>
-<p>Bekijk of bewerk dit historiek item.</p>
-<form asp-controller="Werk" asp-action="Edit" asp-route-id="@Model,@ViewBag.AutoId" method="post">
+@{ 
+    string splitted = Model.Datum.ToShortDateString();
+    string toDisplay = "Werk van " + splitted + " voor " + Model.Auto.Naam;
+}
+<h2>@toDisplay</h2>
+<p>Bekijk of bewerk dit werk item.</p>
+<form asp-controller="Werk" asp-action="Edit" asp-route-id="@ViewBag.AutoId" method="post">
     <div class="div-container">
         <div class="div-left">
             <dl class="dl-horizontal">
-                <dt class="dd-dt"><label for="WerkId">WerkId</label></dt><dd class="dd-dt"><input asp-for="WerkId" class="inputdetails" readonly></input></dd>
-                <dt class="dd-dt"><label for="Datum">Datum</label></dt><dd class="dd-dt"><input asp-for="Datum" class="inputdetails"></input></dd>
-                <dt class="dd-dt"><label for="KilometerStand">Kilometerstand</label></dt><dd class="dd-dt"><input asp-for="KilometerStand" class="inputdetails"></input></dd>
+                <dt class="dd-dt"><label for="WerkId">WerkId</label></dt><dd class="dd-dt"><input asp-for="WerkId" class="inputdetails" readonly/></dd>
+                <dt class="dd-dt"><label for="Datum">Datum</label></dt><dd class="dd-dt"><input asp-for="Datum" class="inputdetails"/></dd>
+                <dt class="dd-dt"><label for="KilometerStand">Kilometerstand</label></dt><dd class="dd-dt"><input asp-for="KilometerStand" class="inputdetails"/></dd>
                 <dt class="dd-dt"> <label for="Extra">Opmerkingen</label></dt><dd class="dd-dt"><textarea  asp-for="Extra" cols="40" rows="5" class="inputdetails"></textarea ></dd>
             </dl>
         </div>

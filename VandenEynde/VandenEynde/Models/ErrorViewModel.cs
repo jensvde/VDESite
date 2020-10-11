@@ -1,5 +1,3 @@
-using System;
-
 namespace VandenEynde.Models
 {
     public class ErrorViewModel

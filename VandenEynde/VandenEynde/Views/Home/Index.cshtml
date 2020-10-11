@@ -35,24 +35,24 @@
         <h2>Bekijk auto</h2>
         <form asp-controller="Auto" asp-action="Details" method="get">
             <label for="Id">Bekijk de details van een auto.</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <select asp-for="Id" asp-items="Model.Items"></select>
-            <input type="submit" value="Ga" class="btn btn-default" />
+            <select class="custom-select" asp-for="Id" asp-items="Model.Items"></select>
+            <input type="submit" value="Bekijk details van auto" class="btn btn-default" />
         </form>
     </div>
     <div class="col-md-4">
         <h2>Bekijk onderdelen</h2>
         <form asp-controller="Onderdeel" asp-action="Index" method="post">
             <label for="Id">Bekijk de onderdelen voor een auto.</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <select asp-for="Id" asp-items="Model.Items"></select>
-            <input type="submit" value="Ga" class="btn btn-default" />
+            <select class="custom-select" asp-for="Id" asp-items="Model.Items"></select>
+            <input type="submit" value="Bekijk onderdelen van auto" class="btn btn-default" />
         </form>
     </div>
     <div class="col-md-4">
         <h2>Bekijk werk</h2>
         <form asp-controller="Werk" asp-action="Index" method="post">
             <label for="Id">Bekijk het werk voor een auto.</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <select asp-for="Id" asp-items="Model.Items"></select>
-            <input type="submit" value="Ga" class="btn btn-default" />
+            <select class="custom-select" asp-for="Id" asp-items="Model.Items"></select>
+            <input type="submit" value="Bekijk werk van auto" class="btn btn-default" />
         </form>
     </div>
 </div>

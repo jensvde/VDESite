@@ -1,35 +1,101 @@
 ﻿@using System.Linq
-@model AutosOnderdeel
+@model OnderdeelViewModel
 
 @{
-    ViewBag.Title = "@Model.Beschrijving";
+    ViewBag.Title = "Nieuw onderdeel";
     Layout = "_Layout";
 }
 
 <h2>Nieuw onderdeel</h2>
 <p>Maak een nieuw onderdeel aan.</p>
 <form asp-controller="Onderdeel" asp-action="Add" method="post">
-<div class="div-container">
-    <div class="div-left">
-        <dl class="dl-horizontal">
-            <dt class="dd-dt"><label for="id">Geschikt voor</label></dt><dd class="dd-dt"><select asp-for="id" asp-items="Model.Items"></select> </dd>
-            <dt class="dd-dt"> <label for="Onderdeel.BestelNr">Bestel nummer</label></dt><dd class="dd-dt"><textarea  asp-for="Onderdeel.BestelNr" cols="40" rows="5" class="inputdetails"></textarea ></dd>
+    <div class="div-container">
+        <div class="div-left">
+            <dl class="dl-horizontal">
+                <dt class="dd-dt">
+                    <label for="Onderdeel.Beschrijving">Beschrijving</label>
+                    <input type="hidden" asp-for="Onderdeel.OnderdeelId" class="inputdetails" readonly />
+                </dt>
+                <dd class="dd-dt"><input asp-for="Onderdeel.Beschrijving" class="inputdetails" /></dd>
+                <dt class="dd-dt">
+                    <label id="labelBestelnr">Bestelnummer</label>
+                    <a class="btn btn-default" id="aLink0" href="#" onclick="toggle_visibility('0');">Nieuw</a>
 
-        </dl>
+
+                </dt>
+                <dd class="dd-dt">
+                   
+                        <input type="text" class="inputdetails" asp-for="Bestelnummer.Nr" />
+                        <input type="hidden" class="inputdetails" asp-for="Bestelnummer.BestelnummerId" />
+                    
+                    @for (int i = 0; i < 10; i++)
+                    {
+                        string idForInput = "inputBestel" + i;
+                        <input type="text" class="inputdetails" id="@idForInput" />
+                    }
+                <dt id="Dt0" style="display:none;" class="dd-dt">
+                    <label>Nieuwe bestelnummer</label>
+                </dt>
+                <dd id="Dd0" class="dd-dt">
+                    @{
+                        for (int count = 0; count < 10; count++)
+                        {
+                            string idForVisibility = "input" + count;
+                            string idForA = "aLink" + (count + 1);
+                            string idForFunct = "" + (count + 1);
+                            string idForSelect = "selectBestel" + count;
+                            <div style="display:none;" id=@idForVisibility>
+                                <input id="@idForSelect" type="text" class="inputdetails" asp-for="NieuweBestelnummers[count]" />&nbsp;<a class="btn btn-dark" href="#" id=@idForA onclick="toggle_visibility(@idForFunct);">Nieuw</a>
+                            </div>
+
+                        }
+                    }
+                </dd>
+            </dl>
+        </div>
+        &nbsp;
+        <div class="div-right">
+            <dl class="dl-horizontal">
+                <dt class="dd-dt"> <label for="Onderdeel.Merk">Merk</label></dt>
+                <dd class="dd-dt"><input asp-for="Onderdeel.Merk" class="inputdetails" /></dd>
+                <dt class="dd-dt">
+                    <label>Geschikt voor</label>
+                    <a class="btn btn-dark" id="bLink0" href="#" onclick="toggle_visibility_auto('0');">Auto toevoegen</a>
+                </dt>
+                <dd class="dd-dt">
+                    @{ 
+                            <input readonly="readonly" type="text" class="inputdetails" asp-for=Auto.Naam />
+                            <input type="hidden" asp-for=Auto.AutoId class="inputdetails" readonly />
+
+                        for (int i = 0; i < 10; i++)
+                        {
+                            string idForInput = "inputAuto" + i;
+                            <input type="text" class="inputdetails" id="@idForInput" />
+                        }
+                    }
+                </dd>
+                @for (int i = 0; i < 10; i++)
+                {
+                    string DtAuto = "autoDt" + i;
+                    string DdAuto = "autoDd" + i;
+                    string bLink = "bLink" + (i + 1);
+                    string forSelect = "select" + i;
+                    int forFunct = (i + 1);
+                    <dt class="dd-dt" id=@DtAuto>
+                        <a class="btn btn-dark" id="@bLink" href="#" onclick="toggle_visibility_auto(@forFunct,@i);">Auto toevoegen</a>
+                    </dt>
+                    <dd class="dd-dt" id=@DdAuto>
+                        <select id="@forSelect" asp-for="SelectedAutos[i]" asp-items="@Model.AvailableAutos" class="custom-select">
+                            <option value="">Kies een auto</option>
+                        </select>
+                    </dd>
+                }
+            </dl>
+        </div>
     </div>
-    &nbsp;
-    <div class="div-right">
-
-        <dl class="dl-horizontal">
-                <dt class="dd-dt"><label for="Onderdeel.Merk">Merk</label></dt><dd class="dd-dt"><input asp-for="Onderdeel.Merk" class="inputdetails"></input></dd>
-
-<dt class="dd-dt"> <label for="Onderdeel.Beschrijving"> Beschrijving</label></dt><dd class="dd-dt"><textarea  asp-for="Onderdeel.Beschrijving" cols="40" rows="6" class="inputdetails"></textarea >
-
-        </dl>
-    </div>
-</div>
     <div class="div-buttons">
-                <input type="submit" value="Opslaan" class="btn btn-default"/>&nbsp;&nbsp;&nbsp;
-                <a class="btn btn-default" asp-area="" asp-controller="Onderdeel" asp-action="Delete" asp-route-id="@Model.Onderdeel.OnderdeelId">Verwijder</a>
+        <input type="submit" value="Opslaan" class="btn btn-default" />&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-default" asp-area="" asp-controller="Onderdeel" asp-action="Delete" asp-route-id="@Model.Onderdeel.OnderdeelId">Verwijder</a>
     </div>
 </form>
+<script src="~/js/onderdeeldetails.js"></script>

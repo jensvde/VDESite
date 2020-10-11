@@ -12,9 +12,9 @@
         <div class="div-left">
             <dl class="dl-horizontal">
                 <dt class="dd-dt"><label for="AutoId">AutoId</label></dt><dd class="dd-dt">@Model.AutoId</dd>
-                <dt class="dd-dt"><label for="Naam">Naam</label></dt><dd class="dd-dt"><input asp-for="Naam" class="inputdetails"></input></dd>
-                <dt class="dd-dt"><label for="Bouwjaar">Bouwjaar</label></dt><dd class="dd-dt"><input asp-for="Bouwjaar" class="inputdetails"></input></dd>
-                <dt class="dd-dt"><label for="Banden">Banden</label></dt><dd class="dd-dt"><input asp-for="Banden" class="inputdetails"></input></dd>
+                <dt class="dd-dt"><label for="Naam">Naam</label></dt><dd class="dd-dt"><input asp-for="Naam" class="inputdetails"/></dd>
+                <dt class="dd-dt"><label for="Bouwjaar">Bouwjaar</label></dt><dd class="dd-dt"><input asp-for="Bouwjaar" class="inputdetails"/></dd>
+                <dt class="dd-dt"><label for="Banden">Banden</label></dt><dd class="dd-dt"><input asp-for="Banden" class="inputdetails"/></dd>
             </dl>
         </div>
         &nbsp;
@@ -35,6 +35,5 @@
     </form>
 
 
-@Html.Partial("_OnderdeelList", Model.Onderdelen)
 
-@Html.Partial("_WerkList", Model.WerkVoorAuto)
+@Html.PartialAsync("_WerkList", Model.WerkVoorAuto)

@@ -3,7 +3,6 @@
 
 <table class="table">
     <tr >
-        <th>Id</th>
         <th>Datum</th>
         <th>Kilometerstand</th>
         <th class="checkbox">Olie</th>
@@ -12,16 +11,15 @@
         <th class="checkbox">Interieur</th>
         <th>Opmerkingen</th>
     </tr>
-    @foreach (Domain.Werk werk in Model)
+    @foreach (Domain.Werk werk in Model.Reverse())
     {
         <tr class="text-auto-even">
-            <td><a class="text-auto-even" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId">@werk.WerkId</a></td>
             <td><a class="text-auto-even" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId">@werk.Datum.ToString(("d"))</a></td>
             <td><a class="text-auto-even" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId">@werk.KilometerStand</a></td>
-            <td class="checkbox"><a class="checkbox" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId"><input type="checkbox" name="OliefilterVervangen" checked=@werk.OliefilterVervangen disabled="true"/></a></td>
-            <td class="checkbox"><a class="checkbox" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId"><input type="checkbox" name="LuchtfilterVervangen" checked=@werk.LuchtfilterVervangen disabled="true"/></a></td>
-            <td class="checkbox"><a class="checkbox" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId"><input type="checkbox" name="BrandstoffilterVervangen" checked=@werk.BrandstoffilterVervangen disabled="true"/></a></td>
-            <td class="checkbox"><a class="checkbox" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId"><input type="checkbox" name="InterieurfilterVervangen" checked=@werk.InterieurfilterVervangen disabled="true"/></a></td>
+            <td class="checkbox"><a class="checkbox" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId"><input readonly="readonly" type="checkbox" name="OliefilterVervangen" checked=@werk.OliefilterVervangen/></a></td>
+            <td class="checkbox"><a class="checkbox" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId"><input type="checkbox" name="LuchtfilterVervangen" checked=@werk.LuchtfilterVervangen readonly="readonly"/></a></td>
+            <td class="checkbox"><a class="checkbox" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId"><input type="checkbox" name="BrandstoffilterVervangen" checked=@werk.BrandstoffilterVervangen readonly="readonly"/></a></td>
+            <td class="checkbox"><a class="checkbox" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId"><input type="checkbox" name="InterieurfilterVervangen" checked=@werk.InterieurfilterVervangen readonly="readonly"/></a></td>
             <td ><a class="text-auto-even" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId">@werk.Extra</a></td>
 
         </tr>

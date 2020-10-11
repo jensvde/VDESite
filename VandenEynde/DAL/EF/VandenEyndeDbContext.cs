@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using Domain;
+﻿using Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Debug;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DAL.EF
 {
@@ -17,11 +14,12 @@ namespace DAL.EF
         public DbSet<Auto> Autos { get; set; }
         public DbSet<Onderdeel> Onderdelen { get; set; }
         public DbSet<Werk> Werken { get; set; }
+        public DbSet<OnderdeelBestelnummer> Bestelnummers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlite("Data Source=VandenEyndeDb_EFCodeFirst.db");
-           optionsBuilder.UseMySql("server=localhost;database=db_vde;user=winkel;password=Winkeltje@1234");
+            optionsBuilder.UseMySql("server=localhost;database=db_vde;user=winkel;password=Winkeltje@1234");
 
 
 
@@ -37,16 +35,31 @@ namespace DAL.EF
 
             modelBuilder.Entity<Onderdeel>(entity =>
             {
-                entity.HasOne(e => e.Auto).WithMany(e => e.Onderdelen);
+             //   entity.HasMany(e => e.AutoOnderdelen).WithOne(e => e.Onderdeel);
             });
-            
+
+
+
             modelBuilder.Entity<Auto>(entity =>
             {
                 entity.HasKey(e => e.AutoId);
                 entity.Property(e => e.AutoId).IsRequired();
-                entity.HasMany<Onderdeel>(e => e.Onderdelen).WithOne(e => e.Auto);
                 entity.HasMany<Werk>(e => e.WerkVoorAuto).WithOne(e => e.Auto);
+               // entity.HasMany<AutoOnderdeel>(e => e.AutoOnderdelen).WithOne(e => e.Auto);
             });
+
+            modelBuilder.Entity<AutoOnderdeel>()
+               .HasKey(t => new { t.AutoId, t.OnderdeelId });
+
+            modelBuilder.Entity<AutoOnderdeel>()
+                .HasOne(pt => pt.Auto)
+                .WithMany(p => p.AutoOnderdelen)
+                .HasForeignKey(pt => pt.AutoId);
+
+            modelBuilder.Entity<AutoOnderdeel>()
+                .HasOne(pt => pt.Onderdeel)
+                .WithMany(t => t.AutoOnderdelen)
+                .HasForeignKey(pt => pt.OnderdeelId);
         }
         public static void Initialize(VandenEyndeDbContext context, bool dropCreateDatabase = false)
         {
@@ -61,7 +74,126 @@ namespace DAL.EF
                 hasRunDuringAppExecution = true;
             }
         }
+        private static void Seed(VandenEyndeDbContext context)
+        {
+            Auto auto1 = new Auto
+            {
+                Naam = "Golf Plus JP",
+                OlieInhoud = 4.5,
+                Bouwjaar = 2005,
+                CylinderInhoud = 1900,
+                VermogenKw = 77,
+                MotorCode = "BKC",
+                Banden = "195/65/15  91H",
+                DatumAangemaakt = DateTime.Today
+            };
+            Auto auto2 = new Auto
+            {
+                Naam = "H1 Eddy",
+                OlieInhoud = 7.5,
+                Bouwjaar = 2011,
+                CylinderInhoud = 2500,
+                VermogenKw = 120,
+                MotorCode = "",
+                Banden = "215/70/R16C  108/106T",
+                DatumAangemaakt = DateTime.Today
+            };
+           
+            context.Autos.AddRange(new[] { auto1, auto2 });
+            context.SaveChanges();
+            OnderdeelBestelnummer bestel1 = new OnderdeelBestelnummer
+            {
+                Nr = "P9192         1457429192"
+            };
+            OnderdeelBestelnummer bestel2 = new OnderdeelBestelnummer
+            {
+                Nr = "P9dfdddddd9192"
+            };
+            OnderdeelBestelnummer bestel3 = new OnderdeelBestelnummer
+            {
+                Nr = "P9dfgdfgdfg192"
+            };
+            OnderdeelBestelnummer bestel4 = new OnderdeelBestelnummer
+            {
+                Nr = "Pdfgdfg"
+            };
+            context.Bestelnummers.AddRange(new[] { bestel1, bestel2, bestel3, bestel4 });
+            context.SaveChanges();
 
+            Onderdeel onderdeel_auto1_1 = new Onderdeel
+            {
+                Beschrijving = "Olie filter",
+                Merk = "Bosch",
+                Bestelnummers = new List<OnderdeelBestelnummer>(),
+                AutoOnderdelen = new List<AutoOnderdeel>()
+            };
+            onderdeel_auto1_1.Bestelnummers.Add(bestel1);
+            onderdeel_auto1_1.Bestelnummers.Add(bestel3);
+            Onderdeel onderdeel_auto1_2 = new Onderdeel
+            {
+                Beschrijving = "Lucht filter",
+                Merk = "Bosch",
+                Bestelnummers = new List<OnderdeelBestelnummer>(),
+                AutoOnderdelen = new List<AutoOnderdeel>()
+            };
+            onderdeel_auto1_2.Bestelnummers.Add(bestel2);
+            onderdeel_auto1_2.Bestelnummers.Add(bestel4);
+
+            context.Onderdelen.AddRange(new[] { onderdeel_auto1_1, onderdeel_auto1_2 });
+            context.SaveChanges();
+            Werk werk1 = new Werk
+            {
+                Auto = auto2,
+                Datum = new DateTime(2020, 6, 11),
+                KilometerStand = 175000,
+                OliefilterVervangen = true,
+                Extra = "Remblokken achter"
+            };
+            Werk werk2 = new Werk
+            {
+                Auto = auto2,
+                Datum = new DateTime(2020, 06, 11),
+                OliefilterVervangen = true,
+                KilometerStand = 185000
+            };
+            context.Werken.AddRange(new[] { werk1, werk2 });
+            context.SaveChanges();
+            foreach (Auto auto in context.Autos.ToList())
+            {
+                auto.AutoOnderdelen = new List<AutoOnderdeel>(new[] { new AutoOnderdeel
+                {
+                    Auto = auto,
+                    Onderdeel = onderdeel_auto1_1
+                }, new AutoOnderdeel
+                {
+                    Auto = auto,
+                    Onderdeel = onderdeel_auto1_2
+                } });
+                context.Autos.Update(auto);
+            }
+
+            context.SaveChanges();
+
+            Auto auto3 = new Auto
+            {
+                Naam = "Ford Ranger",
+                OlieInhoud = 2.5,
+                Bouwjaar = 2016,
+                CylinderInhoud = 2895,
+                VermogenKw = 100,
+                MotorCode = "",
+                Banden = "",
+                DatumAangemaakt = DateTime.Today
+            };
+            context.Autos.Add(auto3);
+            context.SaveChanges();
+
+            foreach (EntityEntry entry in context.ChangeTracker.Entries().ToList())
+            {
+                entry.State = EntityState.Detached;
+            }
+        }
+        /*
         private static void Seed(VandenEyndeDbContext context)
         {
             //Autos
@@ -125,8 +257,8 @@ namespace DAL.EF
             {
                 Naam = "208 Jens", OlieInhoud = 4.25, Bouwjaar = 2012, CylinderInhoud = 1600, VermogenKw = 115, MotorCode = "CA5FV8", Banden = "195/55/16  91V", DatumAangemaakt = DateTime.Today
             };
-            
-            
+
+
             //Onderdelen
             //Auto1
             Onderdeel onderdeel_auto1_1 = new Onderdeel
@@ -369,7 +501,7 @@ namespace DAL.EF
             alleOnderdelen.AddRange(onderdelen_auto12);
             alleOnderdelen.AddRange(onderdelen_auto13);
             alleOnderdelen.AddRange(onderdelen_auto15);
-            
+
             //Werk
             Werk werk1 = new Werk
             {
@@ -466,100 +598,101 @@ namespace DAL.EF
             auto14.WerkVoorAuto = new List<Werk>(new []{werk12});
             auto15.Onderdelen = onderdelen_auto15;
             auto15.WerkVoorAuto = new List<Werk>(new []{werk13, werk15});
-            
+
             //Alle autos incl onderdelen
             List<Auto> alleAutos = new List<Auto>(new []{auto1, auto2, auto3, auto4, auto5, auto6, auto7, auto8, auto9, auto10, auto11, auto12, auto13, auto14, auto15});
-            
+
             //Alles naar Dbcontext:
             context.Onderdelen.AddRange(alleOnderdelen);
             context.Werken.AddRange(alleWerken);
             context.Autos.AddRange(alleAutos);
-            
-            context.SaveChanges();
-            foreach (EntityEntry entry in context.ChangeTracker.Entries().ToList())
-            {
-                entry.State = EntityState.Detached;
-            }
-        }
-        
-        private static void SeedOrg(VandenEyndeDbContext context)
-        {
-            
-            Onderdeel onderdeel = new Onderdeel()
-            {
-                Beschrijving = "Test onderdeel", Merk = "Bosch", BestelNr = "123-KVR-009", OnderdeelId = 1
-            };
-            Onderdeel onderdeel2 = new Onderdeel()
-            {
-                Beschrijving = "Test ", Merk = "Bosch", BestelNr = "1sd2sdsd3-KVR-009", OnderdeelId = 2
-            };
-            Onderdeel onderdeel3 = new Onderdeel()
-            {
-                Beschrijving = "Test dqsdqsdqsdqs", Merk = "Bosch", BestelNr = "123-Ksdsd-009", OnderdeelId = 3
-            };
-            // Initialize the basic data of the application and/or some dummy data
-            Auto auto1 = new Auto()
-            {
-                Naam = "VW Polo 1.2 TDI",
-                OlieInhoud = 12,
-                Bouwjaar = 2005,
-                CylinderInhoud = 1198,
-                VermogenKw = 89,
-                MotorCode = "VKVJDLKJFLKD24545",
-                Banden = "r16 bka bla",
-                Onderdelen = new List<Onderdeel>(),
-                WerkVoorAuto = new List<Werk>()
-            };
-            Werk werk1 = new Werk()
-            {
-                Auto = auto1, Datum = DateTime.Now, InterieurfilterVervangen = true, KilometerStand = 91000, LuchtfilterVervangen = false, OliefilterVervangen = true, WerkId = 1, Extra = "Eerste service sinds 2017"
-            };
-            auto1.WerkVoorAuto.Add(werk1);
-            onderdeel.Auto = auto1;
-            onderdeel2.Auto = auto1;
-            auto1.Onderdelen.Add(onderdeel);
-            auto1.Onderdelen.Add(onderdeel2);
-            Auto auto2 = new Auto()
-            {
-                Naam = "Peugeot 208 1.6 Sport",
-                OlieInhoud = 12,
-                Bouwjaar = 2012,
-                CylinderInhoud = 1598,
-                VermogenKw = 115,
-                MotorCode = "VKVJDLKJFLKD24545",
-                Banden = "r16 bka bla",
-                Onderdelen = new List<Onderdeel>(),
-                WerkVoorAuto = new List<Werk>()
-            };
-            onderdeel3.Auto = auto2;
-            auto2.Onderdelen.Add(onderdeel3);
-            
-            Auto auto3 = new Auto()
-            {
-                Naam = "Peugeot 2008 1.6 Benzine",
-                OlieInhoud = 12,
-                Bouwjaar = 2012,
-                CylinderInhoud = 1598,
-                VermogenKw = 100,
-                MotorCode = "VKVJDLKJFLKD24545",
-                Banden = "r16 bka bla",
-                WerkVoorAuto = new List<Werk>(),
-                Onderdelen = new List<Onderdeel>()
-            };
-            
-            context.Onderdelen.Add(onderdeel);
-            context.Onderdelen.Add(onderdeel2);
-            context.Onderdelen.Add(onderdeel3);
-            context.Werken.Add(werk1);
-context.Autos.Add(auto1);
-            context.Autos.Add(auto2);
-            context.Autos.Add(auto3);
-            context.SaveChanges();
-            foreach (EntityEntry entry in context.ChangeTracker.Entries().ToList())
-            {
-                entry.State = EntityState.Detached;
-            }
 
+            context.SaveChanges();
+            foreach (EntityEntry entry in context.ChangeTracker.Entries().ToList())
+            {
+                entry.State = EntityState.Detached;
+            }
         }
+
+        private static void SeedOrg(VandenEyndeDbContext context)
+    {
+
+        Onderdeel onderdeel = new Onderdeel()
+        {
+            Beschrijving = "Test onderdeel", Merk = "Bosch", BestelNr = "123-KVR-009", OnderdeelId = 1
+        };
+        Onderdeel onderdeel2 = new Onderdeel()
+        {
+            Beschrijving = "Test ", Merk = "Bosch", BestelNr = "1sd2sdsd3-KVR-009", OnderdeelId = 2
+        };
+        Onderdeel onderdeel3 = new Onderdeel()
+        {
+            Beschrijving = "Test dqsdqsdqsdqs", Merk = "Bosch", BestelNr = "123-Ksdsd-009", OnderdeelId = 3
+        };
+        // Initialize the basic data of the application and/or some dummy data
+        Auto auto1 = new Auto()
+        {
+            Naam = "VW Polo 1.2 TDI",
+            OlieInhoud = 12,
+            Bouwjaar = 2005,
+            CylinderInhoud = 1198,
+            VermogenKw = 89,
+            MotorCode = "VKVJDLKJFLKD24545",
+            Banden = "r16 bka bla",
+            Onderdelen = new List<Onderdeel>(),
+            WerkVoorAuto = new List<Werk>()
+        };
+        Werk werk1 = new Werk()
+        {
+            Auto = auto1, Datum = DateTime.Now, InterieurfilterVervangen = true, KilometerStand = 91000, LuchtfilterVervangen = false, OliefilterVervangen = true, WerkId = 1, Extra = "Eerste service sinds 2017"
+        };
+        auto1.WerkVoorAuto.Add(werk1);
+        onderdeel.Auto = auto1;
+        onderdeel2.Auto = auto1;
+        auto1.Onderdelen.Add(onderdeel);
+        auto1.Onderdelen.Add(onderdeel2);
+        Auto auto2 = new Auto()
+        {
+            Naam = "Peugeot 208 1.6 Sport",
+            OlieInhoud = 12,
+            Bouwjaar = 2012,
+            CylinderInhoud = 1598,
+            VermogenKw = 115,
+            MotorCode = "VKVJDLKJFLKD24545",
+            Banden = "r16 bka bla",
+            Onderdelen = new List<Onderdeel>(),
+            WerkVoorAuto = new List<Werk>()
+        };
+        onderdeel3.Auto = auto2;
+        auto2.Onderdelen.Add(onderdeel3);
+
+        Auto auto3 = new Auto()
+        {
+            Naam = "Peugeot 2008 1.6 Benzine",
+            OlieInhoud = 12,
+            Bouwjaar = 2012,
+            CylinderInhoud = 1598,
+            VermogenKw = 100,
+            MotorCode = "VKVJDLKJFLKD24545",
+            Banden = "r16 bka bla",
+            WerkVoorAuto = new List<Werk>(),
+            Onderdelen = new List<Onderdeel>()
+        };
+
+        context.Onderdelen.Add(onderdeel);
+        context.Onderdelen.Add(onderdeel2);
+        context.Onderdelen.Add(onderdeel3);
+        context.Werken.Add(werk1);
+context.Autos.Add(auto1);
+        context.Autos.Add(auto2);
+        context.Autos.Add(auto3);
+        context.SaveChanges();
+        foreach (EntityEntry entry in context.ChangeTracker.Entries().ToList())
+        {
+            entry.State = EntityState.Detached;
+        }
+
+    }
+        */
     }
 }

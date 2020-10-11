@@ -1,47 +1,68 @@
 ﻿@using Domain
 @using VandenEynde.Controllers
-@model Domain.Auto
+@model AutoModel
 
 @{
-    ViewBag.Title = @Model.Naam;
+    ViewBag.Title = Model.Auto.Naam;
     Layout = "_Layout";
 }
 
-<h2>@Model.Naam</h2>
+<h2>@Model.Auto.Naam</h2>
 <p>Bekijk of bewerk de details voor dit voertuig.</p>
 <form asp-controller="Auto" asp-action="Edit" asp-route-id="@Model" method="post">
     <div class="div-container">
         <div class="div-left">
             <dl class="dl-horizontal">
-                <dt class="dd-dt"><label for="AutoId">AutoId</label></dt><dd class="dd-dt"><input asp-for="AutoId" class="inputdetails" readonly></input></dd>
-                <dt class="dd-dt"><label for="Naam">Naam</label></dt><dd class="dd-dt"><input asp-for="Naam" class="inputdetails"></input></dd>
-                <dt class="dd-dt"><label for="Bouwjaar">Bouwjaar</label></dt><dd class="dd-dt"><input asp-for="Bouwjaar" class="inputdetails"></input></dd>
-                <dt class="dd-dt"><label for="Banden">Banden</label></dt><dd class="dd-dt"><input asp-for="Banden" class="inputdetails"></input></dd>
+                <dt class="dd-dt"><label for="Auto.AutoId">AutoId</label></dt><dd class="dd-dt"><input asp-for="Auto.AutoId" class="inputdetails" readonly/></dd>
+                <dt class="dd-dt"><label for="Auto.Naam">Naam</label></dt><dd class="dd-dt"><input asp-for="Auto.Naam" class="inputdetails"/></dd>
+                <dt class="dd-dt"><label for="Auto.Bouwjaar">Bouwjaar</label></dt><dd class="dd-dt"><input asp-for="Auto.Bouwjaar" class="inputdetails"/></dd>
+                <dt class="dd-dt"><label for="Auto.Banden">Banden</label></dt><dd class="dd-dt"><input asp-for="Auto.Banden" class="inputdetails"/></dd>
             </dl>
         </div>
         &nbsp;
         <div class="div-right">
 
             <dl class="dl-horizontal">
-                <dt class="dd-dt"><label for="OlieInhoud">Olie inhoud</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="OlieInhoud"></dd>
-                <dt class="dd-dt"><label for="CylinderInhoud">Cylinder inhoud</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="CylinderInhoud"></dd>
-                <dt class="dd-dt"><label for="VermogenKw">Vermogen (KW)</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="VermogenKw"></dd>
-                <dt class="dd-dt"><label for="MotorCode">Motorcode</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="MotorCode"></dd>
+                <dt class="dd-dt"><label for="Auto.OlieInhoud">Olie inhoud</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="Auto.OlieInhoud"></dd>
+                <dt class="dd-dt"><label for="Auto.CylinderInhoud">Cylinder inhoud</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="Auto.CylinderInhoud"></dd>
+                <dt class="dd-dt"><label for="Auto.VermogenKw">Vermogen (KW)</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="Auto.VermogenKw"></dd>
+                <dt class="dd-dt"><label for="Auto.MotorCode">Motorcode</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="Auto.MotorCode"></dd>
             </dl>
         </div>
     </div>
     <div class="div-buttons">
-        <input type="submit" value="Nieuw onderdeel" asp-action="NewOnderdeel" id="AutoId" class="btn btn-default"/>&nbsp;&nbsp;&nbsp;   
-        <a class="btn btn-default" asp-controller="Werk" asp-action="New" type="Submit" asp-route-id="@Model.AutoId">Nieuw werk</a>&nbsp;&nbsp;&nbsp;
-        <input type="submit" value="Opslaan" class="btn btn-default"/>&nbsp;&nbsp;&nbsp;
-        <a class="btn btn-default" asp-controller="Auto" asp-action="Delete" type="Submit" asp-route-id="@Model.AutoId">Verwijder</a>&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-default" asp-controller="Onderdeel" asp-action="Add" type="Submit" asp-route-id="@Model.Auto.AutoId">Nieuw onderdeel</a>&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-default" asp-controller="Werk" asp-action="New" type="Submit" asp-route-id="@Model.Auto.AutoId">Nieuw werk</a>&nbsp;&nbsp;&nbsp;
+        <input type="submit" value="Opslaan" class="btn btn-default" />&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-default" asp-controller="Auto" asp-action="Delete" type="Submit" asp-route-id="@Model.Auto.AutoId">Verwijder</a>&nbsp;&nbsp;&nbsp;
 
 
-        </div>
+    </div>
 </form>
 
 <h2>Onderdelen</h2>
-@Html.Partial("_OnderdeelList", Model.Onderdelen)
+<table class="table">
+    <tr>
+        <th>Beschrijving</th>
+        <th>Merk</th>
+        <th>Bestel nummers</th>
+    </tr>
+    @foreach (Domain.Onderdeel onderdeel in Model.OnderdelenVoorAuto)
+    {
+        string toDisplay = "";
+        @foreach (Domain.OnderdeelBestelnummer bestelnummer in onderdeel.Bestelnummers)
+        {
+            toDisplay += bestelnummer.Nr + "\n";
+        }
+        <tr class="text-auto-even">
+            <td><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@onderdeel.Beschrijving</a></td>
+            <td><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@onderdeel.Merk</a></td>
+            <td>
+                <span style="white-space: pre-wrap"><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@toDisplay</a></span>
+            </td>
+        </tr>
+    }
+</table>
 
 <h2>Werk historiek</h2>
-@Html.Partial("_WerkList", Model.WerkVoorAuto)
+<partial name="_WerkList" model=Model.Auto.WerkVoorAuto />

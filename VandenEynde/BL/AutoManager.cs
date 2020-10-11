@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Xml.Linq;
-using DAL;
+﻿using DAL;
 using DAL.EF;
 using Domain;
+using System.Collections.Generic;
 
 namespace BL
 {
@@ -75,9 +72,9 @@ namespace BL
             return repo.CreateAuto(auto);
         }
 
-        public void DeleteAuto(int id)
+        public void DeleteAuto(Auto auto)
         {
-            repo.DeleteAuto(id);
+            repo.DeleteAuto(auto);
         }
 
         public Onderdeel AddOnderdeel(Onderdeel onderdeel)
@@ -118,6 +115,30 @@ namespace BL
         public void DeleteWerk(Werk werk)
         {
             repo.DeleteWerk(werk);
+        }
+
+        public OnderdeelBestelnummer GetOnderdeelBestelnummer(int id)
+        {
+            return repo.ReadOnderdeelBestelnummer(id);
+        }
+
+        public OnderdeelBestelnummer AddOnderdeelBestelnummer(OnderdeelBestelnummer onderdeelBestelnummer)
+        {
+            return repo.CreateOnderdeelBestelnummer(onderdeelBestelnummer);
+        }
+
+        public void ChangeOnderdeelBestelnummer(OnderdeelBestelnummer onderdeelBestelnummer)
+        {
+            repo.UpdateOnderdeelBestelnummer(onderdeelBestelnummer);
+        }
+
+        public void DeleteOnderdeelBestelnummer(OnderdeelBestelnummer onderdeelBestelnummer)
+        {
+            repo.DeleteOnderdeelBestelnummer(onderdeelBestelnummer);
+        }
+        public IEnumerable<OnderdeelBestelnummer> GetOnderdeelBestelnummers()
+        {
+            return repo.ReadonderdeelBestelnummers();
         }
     }
 }

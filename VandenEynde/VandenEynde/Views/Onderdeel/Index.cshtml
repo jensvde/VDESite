@@ -1,8 +1,33 @@
-﻿@model IEnumerable<Domain.Onderdeel>
+﻿@model OnderdeelIndexModel
 
 @{
     ViewBag.Title = "Onderdelen";
     Layout = "_Layout";
 }
-<h2 class="float-left">Onderdelen</h2><a class="btn btn-primary float-right" asp-area="" asp-controller="Onderdeel" asp-action="Add" >Nieuw</a>
-@Html.Partial("_OnderdeelList", Model)
+<h2 class="float-left">Onderdelen</h2><a class="btn btn-primary float-right" asp-area="" asp-controller="Onderdeel" asp-action="Add">Nieuw</a>
+
+<table class="table">
+    <tr>
+        <th>Beschrijving</th>
+        <th>Merk</th>
+        <th>Geschikt voor</th>
+        <th>Bestel nummers</th>
+    </tr>
+    @{
+        int count = 0;
+        foreach (Domain.Onderdeel onderdeel in Model.Onderdelen)
+        {
+        <tr class="text-auto-even">
+            <td><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@onderdeel.Beschrijving</a></td>
+            <td><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@onderdeel.Merk</a></td>
+            <td>
+                <span style="white-space: pre-wrap"><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@Model.Autos[count]</a></span>
+            </td>
+            <td>
+                <span style="white-space: pre-wrap"><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@Model.Bestelnummers[count]</a></span>
+            </td>
+        </tr>
+            count++;
+        }
+    }
+</table>

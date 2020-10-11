@@ -1,6 +1,5 @@
-﻿using System.Collections;
+﻿using Domain;
 using System.Collections.Generic;
-using Domain;
 
 namespace DAL
 {
@@ -11,14 +10,12 @@ namespace DAL
         Auto ReadAuto(int autoId);
 
         void UpdateAuto(Auto auto);
-        void DeleteAuto(int autoId);
+        void DeleteAuto(Auto auto);
 
-        IEnumerable<Onderdeel> GetOnderdelenVanAuto(int autoId);
         Onderdeel CreateOnderdeel(Onderdeel onderdeel);
         void UpdateOnderdeel(Onderdeel onderdeel);
         void DeleteOnderdeel(Onderdeel onderdeel);
 
-        IEnumerable<Werk> GetWerkVoorAuto(int autoId);
         Werk CreateWerk(Werk werk);
 
         IEnumerable<Onderdeel> ReadOnderdelen();
@@ -28,6 +25,12 @@ namespace DAL
         Werk ReadWerk(int id);
         void UpdateWerk(Werk werk);
         void DeleteWerk(Werk werk);
+
+        IEnumerable<OnderdeelBestelnummer> ReadonderdeelBestelnummers();
+        OnderdeelBestelnummer ReadOnderdeelBestelnummer(int id);
+        void UpdateOnderdeelBestelnummer(OnderdeelBestelnummer onderdeelBestelnummer);
+        void DeleteOnderdeelBestelnummer(OnderdeelBestelnummer onderdeelBestelnummer);
+        OnderdeelBestelnummer CreateOnderdeelBestelnummer(OnderdeelBestelnummer onderdeelBestelnummer);
 
     }
 }

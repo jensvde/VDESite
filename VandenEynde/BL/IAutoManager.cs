@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Domain;
+﻿using Domain;
+using System.Collections.Generic;
 
 namespace BL
 {
@@ -15,7 +15,7 @@ namespace BL
         IEnumerable<Werk> GetWerken();
 
         void ChangeAuto(Auto auto);
-        void DeleteAuto(int id);
+        void DeleteAuto(Auto auto);
 
         Onderdeel AddOnderdeel(Onderdeel onderdeel);
         void ChangeOnderdeel(Onderdeel onderdeel);
@@ -26,5 +26,11 @@ namespace BL
         Werk AddWerk(Werk werk);
         void ChangeWerk(Werk werk);
         void DeleteWerk(Werk werk);
+
+        OnderdeelBestelnummer GetOnderdeelBestelnummer(int id);
+        OnderdeelBestelnummer AddOnderdeelBestelnummer(OnderdeelBestelnummer onderdeelBestelnummer);
+        void ChangeOnderdeelBestelnummer(OnderdeelBestelnummer onderdeelBestelnummer);
+        void DeleteOnderdeelBestelnummer(OnderdeelBestelnummer onderdeelBestelnummer);
+        IEnumerable<OnderdeelBestelnummer> GetOnderdeelBestelnummers();
     }
 }

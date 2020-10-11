@@ -1,19 +1,58 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BL;
+﻿using BL;
 using Domain;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using VandenEynde.Models;
 
 namespace VandenEynde.Controllers
 {
-    [Authorize]
+    // [Authorize]
     public class OnderdeelController : Controller
     {
         private IAutoManager mgr;
+        private OnderdeelIndexModel createIndexModel(int id = 0)
+        {
 
+            OnderdeelIndexModel model = new OnderdeelIndexModel();
+                var OnderdelenQuery = mgr.GetOnderdelen();
+                List<Onderdeel> Onderdelen = new List<Onderdeel>();
+                foreach (Onderdeel onderdeel in OnderdelenQuery)
+                {
+                    if (id == 0)
+                    {
+                        Onderdelen.Add(onderdeel);
+                    }
+                    else
+                    {
+                        foreach(AutoOnderdeel autoOnderdeel in onderdeel.AutoOnderdelen)
+                        {
+                            if (autoOnderdeel.AutoId == id)
+                            {
+                                Onderdelen.Add(onderdeel);
+                            }
+                        }
+                    }
+                }
+                int count = 0;
+                foreach (Onderdeel onderdeel in Onderdelen)
+                {
+                    model.Onderdelen.Add(onderdeel);
+                    foreach (AutoOnderdeel autoOnderdeel in onderdeel.AutoOnderdelen)
+                    {
+                        model.Autos[count] += mgr.GetAuto(autoOnderdeel.AutoId).Naam + "\n";
+                    }
+                    var bestelnrs = onderdeel.Bestelnummers;
+                    foreach (OnderdeelBestelnummer bestelnummer in bestelnrs)
+                    {
+                        model.Bestelnummers[count] += bestelnummer.Nr + "\n";
+                    }
+                    count++;
+                }
+            return model;
+        }
         public OnderdeelController()
         {
             mgr = new AutoManager();
@@ -21,77 +60,246 @@ namespace VandenEynde.Controllers
         // GET
         public IActionResult Index()
         {
-            
-            return View(mgr.GetOnderdelen());
+            return View(createIndexModel());
         }
-        
+
         [HttpPost]
         public IActionResult Index(int id)
         {
-            
-            return View(mgr.GetOnderdelen().AsEnumerable().Where(x => x.Auto.AutoId == id));
+            return View(createIndexModel(id));
         }
 
+        private OnderdeelViewModel createDetailsModel(int id)
+        {
+            OnderdeelViewModel onderdeelViewModel = new OnderdeelViewModel
+            {
+                Onderdeel = mgr.GetOnderdeel(id),
+                AvailableAutos = new List<SelectListItem>()
+            };
+
+            List<int> excludedAutos = new List<int>();
+            foreach(AutoOnderdeel autoOnderdeel in onderdeelViewModel.Onderdeel.AutoOnderdelen)
+            {
+                excludedAutos.Add(autoOnderdeel.AutoId);
+            }
+            foreach(Auto auto in mgr.GetAutos())
+            {
+                if (!(excludedAutos.Contains(auto.AutoId)))
+                {
+                    onderdeelViewModel.AvailableAutos.Add(new SelectListItem
+                    {
+                        Text = auto.Naam, 
+                        Value = ""+auto.AutoId
+                    });  
+                }
+                
+            }
+
+            int count = 0;
+            foreach(OnderdeelBestelnummer bestelnummer in mgr.GetOnderdeel(id).Bestelnummers)
+            {
+                onderdeelViewModel.OnderdeelBestelnummers[count] = bestelnummer;
+                count++;
+            }
+            return onderdeelViewModel;
+        }
         public IActionResult Details(int id)
         {
-            
-            return View(mgr.GetOnderdelen().ToList().Find(x => x.OnderdeelId == id));
+            return View(createDetailsModel(id));
         }
 
-        public IActionResult New(int id)
-        {
-            Onderdeel onderdeel = new Onderdeel();
-            onderdeel.Auto = mgr.GetAuto(id);
-            return View(onderdeel);
-        }
-        [HttpPost]
-        public IActionResult New(Onderdeel onderdeel , int id)
-        {
-            
-            mgr.GetAuto(id).Onderdelen.Add(onderdeel);
-            Onderdeel added = mgr.AddOnderdeel(onderdeel);
-            return RedirectToAction("Details","Onderdeel",new {id = added.OnderdeelId});
-        }
-        [HttpPost]
 
-        public IActionResult Edit(Onderdeel onderdeel)
+        
+
+        [HttpPost]
+        public IActionResult Edit(OnderdeelViewModel model)
         {
-            mgr.ChangeOnderdeel(onderdeel);
-            return RedirectToAction("Details", "Onderdeel", new {id = onderdeel.OnderdeelId});
+                Onderdeel onderdeel = mgr.GetOnderdeel(model.Onderdeel.OnderdeelId);
+                if (onderdeel != null)
+                {
+                    //////////////////ONDERDEEL/////////////////////////
+                    onderdeel.Merk = model.Onderdeel.Merk;
+                    onderdeel.Beschrijving = model.Onderdeel.Beschrijving;
+                    if (model.OnderdeelBestelnummers != null)
+                    {
+
+                        int count = 0;
+                        foreach (OnderdeelBestelnummer bestelnr in onderdeel.Bestelnummers)
+                        {
+                            bestelnr.Nr = model.OnderdeelBestelnummers[count].Nr;
+                            mgr.ChangeOnderdeelBestelnummer(bestelnr);
+                            count++;
+                        }
+                    }
+                    ///////////////////////////////////////////////////////////////////////////
+                    ///////////////////////////////AUTOS//////////////////////////////////////
+                    if (model.SelectedAutos != null)
+                    {
+                        foreach (int idAuto in model.SelectedAutos)
+                        {
+                            onderdeel.AutoOnderdelen.Add(new AutoOnderdeel
+                            {
+                                Auto = mgr.GetAuto(idAuto),
+                                Onderdeel = onderdeel
+                            });
+                        }
+                    }
+                    ///////////////////////////////////////////////////////////////////////////
+                    ///////////////////////////////BESTELNUMMERS///////////////////////////////
+                    if (model.NieuweBestelnummers != null)
+                    {
+                        if (onderdeel.Bestelnummers == null)
+                        {
+                            onderdeel.Bestelnummers = new List<OnderdeelBestelnummer>();
+                        }
+                        foreach (string nummer in model.NieuweBestelnummers)
+                        {
+                            if (nummer != null)
+                            {
+                                OnderdeelBestelnummer onderdeelBestelnummer = new OnderdeelBestelnummer
+                                {
+                                    Onderdeel = onderdeel,
+                                    Nr = nummer
+                                };
+                                mgr.AddOnderdeelBestelnummer(onderdeelBestelnummer);
+                            }
+                        }
+                    }
+
+                    mgr.ChangeOnderdeel(onderdeel);
+                }
+            
+            return RedirectToAction("Details", "Onderdeel", new { id = onderdeel.OnderdeelId });
+
         }
 
         public IActionResult Delete(int id)
         {
-            
+
             mgr.DeleteOnderdeel(mgr.GetOnderdeel(id));
             return RedirectToAction("Index", "Onderdeel");
         }
 
-        public IActionResult Add()
+        public IActionResult DeleteAuto(int id, int auto)
         {
-            AutosOnderdeel autosOnderdeel = new AutosOnderdeel
+            Onderdeel onderdeelToUpdate = mgr.GetOnderdeel(id);
+            List<AutoOnderdeel> toRemove = new List<AutoOnderdeel>();
+            foreach(AutoOnderdeel autoOnderdeel in onderdeelToUpdate.AutoOnderdelen)
             {
-                Items = new List<SelectListItem>(), Onderdeel = new Onderdeel()
+                if (autoOnderdeel.AutoId == auto)
+                {
+                    toRemove.Add(autoOnderdeel);
+                }
+            }
+            foreach(AutoOnderdeel removeThis in toRemove)
+            {
+                onderdeelToUpdate.AutoOnderdelen.Remove(removeThis);
+            }
+            mgr.ChangeOnderdeel(onderdeelToUpdate);
+            return RedirectToAction("Details", "Onderdeel", new { id = onderdeelToUpdate.OnderdeelId });
+        }
+
+        public IActionResult Add(int id)
+        {
+            OnderdeelViewModel onderdeelViewModel = new OnderdeelViewModel
+            {
+                AvailableAutos = new List<SelectListItem>(),
+                Onderdeel = new Onderdeel()
             };
+            onderdeelViewModel.Onderdeel.AutoOnderdelen = new List<AutoOnderdeel>();
+
+            List<int> excludedAutos = new List<int>();
+            foreach (AutoOnderdeel autoOnderdeel in onderdeelViewModel.Onderdeel.AutoOnderdelen)
+            {
+                excludedAutos.Add(autoOnderdeel.AutoId);
+            }
+            if (excludedAutos.Count == 0)
+            {
+                if (id != 0)
+                {
+                    excludedAutos.Add(id);
+                }
+            }
             foreach (Auto auto in mgr.GetAutos())
             {
-                SelectListItem item = new SelectListItem(value: auto.AutoId+"", text:auto.Naam);
-                autosOnderdeel.Items.Add(item);
+                if (!(excludedAutos.Contains(auto.AutoId)))
+                {
+                    onderdeelViewModel.AvailableAutos.Add(new SelectListItem
+                    {
+                        Text = auto.Naam,
+                        Value = "" + auto.AutoId
+                    });
+                }
+
             }
-            return View(autosOnderdeel);
+            onderdeelViewModel.Onderdeel.Bestelnummers = new List<OnderdeelBestelnummer>
+            {
+                new OnderdeelBestelnummer()
+            };
+            if(id > 0)
+            {
+                onderdeelViewModel.Auto = mgr.GetAuto(id);
+            }
+            return View(onderdeelViewModel);
         }
 
         [HttpPost]
-        public IActionResult Add(AutosOnderdeel autosOnderdeel)
+        public IActionResult Add(OnderdeelViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                mgr.GetAuto(autosOnderdeel.id).Onderdelen.Add(autosOnderdeel.Onderdeel);
-                Onderdeel added = mgr.AddOnderdeel(autosOnderdeel.Onderdeel);
-                return RedirectToAction("Details","Onderdeel",new {id = added.OnderdeelId});
-            }
 
-            return View();
+            Onderdeel toAdd = model.Onderdeel;
+            ///////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////AUTOS//////////////////////////////////////
+            if (toAdd.AutoOnderdelen == null) { toAdd.AutoOnderdelen = new List<AutoOnderdeel>(); }
+            if (model.SelectedAutos != null)
+            {
+                if(model.Auto != null) {
+                    toAdd.AutoOnderdelen.Add(new AutoOnderdeel
+                    {
+                        Auto = mgr.GetAuto(model.Auto.AutoId),
+                        Onderdeel = toAdd
+                    });
+                }
+                foreach (int idAuto in model.SelectedAutos)
+                {
+                    toAdd.AutoOnderdelen.Add(new AutoOnderdeel
+                    {
+                        Auto = mgr.GetAuto(idAuto),
+                        Onderdeel = toAdd
+                    });
+                }
+            }
+            toAdd = mgr.AddOnderdeel(toAdd);
+
+            toAdd.Bestelnummers = new List<OnderdeelBestelnummer>();
+            ///////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////BESTELNUMMERS///////////////////////////////
+            OnderdeelBestelnummer onderdeelBestelnummer = new OnderdeelBestelnummer
+            {
+                Onderdeel = toAdd,
+                            Nr = model.Bestelnummer.Nr
+                        };
+            mgr.AddOnderdeelBestelnummer(onderdeelBestelnummer);
+            if (model.NieuweBestelnummers != null)
+            {
+               
+                foreach (string nummer in model.NieuweBestelnummers)
+                {
+                    if (nummer != null)
+                    {
+                        onderdeelBestelnummer = new OnderdeelBestelnummer
+                        {
+                            Onderdeel = toAdd,
+                            Nr = nummer
+                        };
+                        mgr.AddOnderdeelBestelnummer(onderdeelBestelnummer);
+                    }
+                }
+            }
+            mgr.ChangeOnderdeel(toAdd);
+            
+            return RedirectToAction("Details", "Onderdeel", new { id = toAdd.OnderdeelId });
+
         }
 
     }

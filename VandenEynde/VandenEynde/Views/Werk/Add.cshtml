@@ -13,9 +13,9 @@
     <div class="div-container">
         <div class="div-left">
             <dl class="dl-horizontal">
-                <dt class="dd-dt"><label for="id">Auto</label></dt><dd class="dd-dt"><select asp-for="id" asp-items="Model.Items"></select> </dd>
-                <dt class="dd-dt"><label for="Werk.Datum">Datum</label></dt><dd class="dd-dt"><input asp-for="Werk.Datum" class="inputdetails"></input></dd>
-                <dt class="dd-dt"><label for="Werk.KilometerStand">Kilometerstand</label></dt><dd class="dd-dt"><input asp-for="Werk.KilometerStand" class="inputdetails"></input></dd>
+                <dt class="dd-dt"><label for="id">Auto</label></dt><dd class="dd-dt"><select class="custom-select" asp-for="id" asp-items="Model.Items"></select> </dd>
+                <dt class="dd-dt"><label for="Werk.Datum">Datum</label></dt><dd class="dd-dt"><input asp-for="Werk.Datum" class="inputdetails"/></dd>
+                <dt class="dd-dt"><label for="Werk.KilometerStand">Kilometerstand</label></dt><dd class="dd-dt"><input asp-for="Werk.KilometerStand" class="inputdetails"/></dd>
                 <dt class="dd-dt"> <label for="Werk.Extra">Opmerkingen</label></dt><dd class="dd-dt"><textarea  asp-for="Werk.Extra" cols="40" rows="5" class="inputdetails"></textarea ></dd>
             </dl>
         </div>
