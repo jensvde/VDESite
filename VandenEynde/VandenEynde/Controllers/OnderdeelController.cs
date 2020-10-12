@@ -253,7 +253,7 @@ namespace VandenEynde.Controllers
             if (toAdd.AutoOnderdelen == null) { toAdd.AutoOnderdelen = new List<AutoOnderdeel>(); }
             if (model.SelectedAutos != null)
             {
-                if(model.Auto != null) {
+                if(model.Auto != null && model.Auto.AutoId > 0) {
                     toAdd.AutoOnderdelen.Add(new AutoOnderdeel
                     {
                         Auto = mgr.GetAuto(model.Auto.AutoId),
@@ -274,20 +274,15 @@ namespace VandenEynde.Controllers
             toAdd.Bestelnummers = new List<OnderdeelBestelnummer>();
             ///////////////////////////////////////////////////////////////////////////
             ///////////////////////////////BESTELNUMMERS///////////////////////////////
-            OnderdeelBestelnummer onderdeelBestelnummer = new OnderdeelBestelnummer
-            {
-                Onderdeel = toAdd,
-                            Nr = model.Bestelnummer.Nr
-                        };
-            mgr.AddOnderdeelBestelnummer(onderdeelBestelnummer);
+            
             if (model.NieuweBestelnummers != null)
             {
-               
+                
                 foreach (string nummer in model.NieuweBestelnummers)
                 {
-                    if (nummer != null)
+                    if (nummer != null && nummer.Length > 1)
                     {
-                        onderdeelBestelnummer = new OnderdeelBestelnummer
+                        OnderdeelBestelnummer onderdeelBestelnummer = new OnderdeelBestelnummer
                         {
                             Onderdeel = toAdd,
                             Nr = nummer

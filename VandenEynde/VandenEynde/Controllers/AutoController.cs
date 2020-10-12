@@ -22,9 +22,27 @@ namespace VandenEynde.Controllers
             mgr.ChangeAuto(auto);
             return RedirectToAction("Details", "Auto", new { id = auto.AutoId }); ;
         }
-        public IActionResult Delete(Auto auto)
+        public IActionResult Delete(int id)
         {
-            mgr.DeleteAuto(auto);
+            Auto toRemove = mgr.GetAuto(id);
+            List<Werk> toRemoveWerk = new List<Werk>();
+            if(toRemove.AutoOnderdelen != null)
+            {
+                toRemove.AutoOnderdelen = new List<AutoOnderdeel>();
+            }
+            if(toRemove.WerkVoorAuto != null)
+            {
+                toRemoveWerk.AddRange(toRemove.WerkVoorAuto);
+                toRemove.WerkVoorAuto = new List<Werk>();
+            }
+            mgr.ChangeAuto(toRemove);
+            foreach(Werk werk in toRemoveWerk)
+            {
+                mgr.DeleteWerk(werk);
+            }
+            mgr.DeleteAuto(toRemove);
+
+            
             return RedirectToAction("Index");
         }
         // GET
@@ -53,7 +71,7 @@ namespace VandenEynde.Controllers
 
         public IActionResult Add()
         {
-            return View();
+            return View(new Auto { Bouwjaar=2000});
         }
 
         [HttpPost]

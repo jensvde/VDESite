@@ -38,8 +38,16 @@ namespace VandenEynde.Controllers
 
         public IActionResult Edit(Werk werk)
         {
-            mgr.ChangeWerk(werk);
-            return RedirectToAction("Index", "Werk");
+            Werk werkToChange = mgr.GetWerk(werk.WerkId);
+            if(werk.Extra != null) { werkToChange.Extra = werk.Extra; }
+            if (werk.Datum != null) { werkToChange.Datum = werk.Datum; }
+            if (werk.KilometerStand != werkToChange.KilometerStand && werk.KilometerStand > 0) { werkToChange.KilometerStand = werk.KilometerStand; }
+            if (werk.OliefilterVervangen != werkToChange.OliefilterVervangen) { werkToChange.OliefilterVervangen = werk.OliefilterVervangen; }
+            if (werk.LuchtfilterVervangen != werkToChange.LuchtfilterVervangen) { werkToChange.LuchtfilterVervangen = werk.LuchtfilterVervangen; }
+            if (werk.BrandstoffilterVervangen != werkToChange.BrandstoffilterVervangen) { werkToChange.BrandstoffilterVervangen = werk.BrandstoffilterVervangen; }
+            if (werk.InterieurfilterVervangen != werkToChange.InterieurfilterVervangen) { werkToChange.InterieurfilterVervangen = werk.InterieurfilterVervangen; }
+            mgr.ChangeWerk(werkToChange);
+            return RedirectToAction("Details", "Werk", new { id = werkToChange.WerkId});
         }
 
         public IActionResult Add()

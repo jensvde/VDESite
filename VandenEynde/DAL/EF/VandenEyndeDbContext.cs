@@ -70,7 +70,7 @@ namespace DAL.EF
                     context.Database.EnsureDeleted();
                 // Create database and initial data if needed
                 if (context.Database.EnsureCreated())
-                    Seed(context);
+                   // Seed(context);
                 hasRunDuringAppExecution = true;
             }
         }
