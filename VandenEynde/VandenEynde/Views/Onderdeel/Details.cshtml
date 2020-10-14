@@ -6,7 +6,7 @@
     Layout = "_Layout";
 }
 
-<h2>@Model.Onderdeel.Beschrijving</h2>
+<h2>@Model.Onderdeel.Beschrijving</h2><a class="btn btn-primary float-right" asp-area="" asp-controller="Onderdeel" asp-action="Add">Nieuw</a>
 <p>Bekijk of bewerk de details voor dit onderdeel.</p>
 <form asp-controller="Onderdeel" asp-action="Edit" method="post" >
     <div class="div-container">

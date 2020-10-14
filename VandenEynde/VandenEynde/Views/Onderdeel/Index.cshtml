@@ -4,6 +4,76 @@
     ViewBag.Title = "Onderdelen";
     Layout = "_Layout";
 }
+
+<div class="sortBar">
+    <div class="sortLeft sortBarCheckBoxes">
+        <form asp-controller="Database" asp-action="IndexNewAdmin" method="post">
+            <table>
+                <tr>
+                    <th>
+                        &nbsp;&nbsp;
+                    </th>
+                    <th style="text-align: left;" colspan="2">Sorteer per merk</th>
+                </tr>
+                <tr>
+                    <th>
+                        &nbsp;&nbsp;
+                    </th>
+                    @{
+                        for (int i = 0; i < @Model.GelesecteerdeMerken.Length; i++)
+                        {
+
+                            if (Model.GelesecteerdeMerken[i] != null)
+                            {
+                               
+                            <th>
+                                <label asp-for="@Model.GelesecteerdeMerken[i]">@Model.GelesecteerdeMerken[i].Name</label>&nbsp;
+                                <input class="sortBarCheckBoxes" type="checkbox" asp-for="@Model.GelesecteerdeMerken[i].Selected" />
+                                <input class="sortBarCheckBoxes" type="hidden" asp-for="@Model.GelesecteerdeMerken[i].Id" />
+                                <input class="sortBarCheckBoxes" type="hidden" asp-for="@Model.GelesecteerdeMerken[i].Name" />
+                                @if (Model.GelesecteerdeMerken[i+1] != null)
+                                {
+                                    @:&nbsp; | &nbsp;
+                                }
+
+                            </th>
+
+                            }
+                            if (Model.GelesecteerdeMerken[i] == null)
+                            {
+                                break;
+                            }
+                        }
+
+
+                        <th>&nbsp;&nbsp;&nbsp;<input type="submit" value="Sorteer" class="btn btn-dark" /></th>
+                    }
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="sortRight" class="sortBarCheckBoxes">
+        <table>
+            <tr>
+                <th style="text-align: left;">Zoek per naam</th>
+            </tr>
+            <tr>
+
+                <td style="text-align:end;">
+                    <form asp-controller="Database" asp-action="IndexSearchAdmin" method="post">
+                        <input asp-for="@Model.SearchString" class=""></input>&nbsp;
+                        <input type="submit" value="Zoek" class="btn btn-dark" />&nbsp;
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+<br />
+
+
 <h2 class="float-left">Onderdelen</h2><a class="btn btn-primary float-right" asp-area="" asp-controller="Onderdeel" asp-action="Add">Nieuw</a>
 
 <table class="table">
@@ -17,16 +87,16 @@
         int count = 0;
         foreach (Domain.Onderdeel onderdeel in Model.Onderdelen)
         {
-        <tr class="text-auto-even">
-            <td><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@onderdeel.Beschrijving</a></td>
-            <td><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@onderdeel.Merk</a></td>
-            <td>
-                <span style="white-space: pre-wrap"><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@Model.Autos[count]</a></span>
-            </td>
-            <td>
-                <span style="white-space: pre-wrap"><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@Model.Bestelnummers[count]</a></span>
-            </td>
-        </tr>
+            <tr class="text-auto-even">
+                <td><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@onderdeel.Beschrijving</a></td>
+                <td><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@onderdeel.Merk</a></td>
+                <td>
+                    <span style="white-space: pre-wrap"><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@Model.Autos[count]</a></span>
+                </td>
+                <td>
+                    <span style="white-space: pre-wrap"><a class="text-auto-even" asp-area="" asp-controller="Onderdeel" asp-action="Details" asp-route-id="@onderdeel.OnderdeelId">@Model.Bestelnummers[count]</a></span>
+                </td>
+            </tr>
             count++;
         }
     }

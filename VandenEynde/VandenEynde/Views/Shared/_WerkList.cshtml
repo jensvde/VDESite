@@ -11,10 +11,12 @@
         <th class="checkbox">Interieur</th>
         <th>Opmerkingen</th>
     </tr>
-    @foreach (Domain.Werk werk in Model.Reverse())
+    
+    @foreach (Domain.Werk werk in Model.ToList().OrderByDescending(x => x.Datum))
     {
+        string DateToDisplay = werk.Datum.Day + "/" + werk.Datum.Month + "/" + werk.Datum.Year;
         <tr class="text-auto-even">
-            <td><a class="text-auto-even" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId">@werk.Datum.ToString(("d"))</a></td>
+            <td><a class="text-auto-even" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId">@DateToDisplay</a></td>
             <td><a class="text-auto-even" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId">@werk.KilometerStand</a></td>
             <td class="checkbox"><a class="checkbox" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId"><input readonly="readonly" type="checkbox" name="OliefilterVervangen" checked=@werk.OliefilterVervangen/></a></td>
             <td class="checkbox"><a class="checkbox" asp-area="" asp-controller="Werk" asp-action="Details" asp-route-id="@werk.WerkId"><input type="checkbox" name="LuchtfilterVervangen" checked=@werk.LuchtfilterVervangen readonly="readonly"/></a></td>

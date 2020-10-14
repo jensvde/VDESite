@@ -7,26 +7,35 @@
     Layout = "_Layout";
 }
 
-<h2>@Model.Auto.Naam</h2>
+<h2>@Model.Auto.Naam</h2><a class="btn btn-primary float-right" asp-area="" asp-controller="Auto" asp-action="Add">Nieuw</a>
+
 <p>Bekijk of bewerk de details voor dit voertuig.</p>
 <form asp-controller="Auto" asp-action="Edit" asp-route-id="@Model" method="post">
     <div class="div-container">
         <div class="div-left">
             <dl class="dl-horizontal">
-                <dt class="dd-dt"><label for="Auto.AutoId">AutoId</label></dt><dd class="dd-dt"><input asp-for="Auto.AutoId" class="inputdetails" readonly/></dd>
-                <dt class="dd-dt"><label for="Auto.Naam">Naam</label></dt><dd class="dd-dt"><input asp-for="Auto.Naam" class="inputdetails"/></dd>
-                <dt class="dd-dt"><label for="Auto.Bouwjaar">Bouwjaar</label></dt><dd class="dd-dt"><input asp-for="Auto.Bouwjaar" class="inputdetails"/></dd>
-                <dt class="dd-dt"><label for="Auto.Banden">Banden</label></dt><dd class="dd-dt"><input asp-for="Auto.Banden" class="inputdetails"/></dd>
+                <dt class="dd-dt"><label for="Auto.AutoId">AutoId</label></dt>
+                <dd class="dd-dt"><input asp-for="Auto.AutoId" class="inputdetails" readonly /></dd>
+                <dt class="dd-dt"><label for="Auto.Naam">Naam</label></dt>
+                <dd class="dd-dt"><input asp-for="Auto.Naam" class="inputdetails" /></dd>
+                <dt class="dd-dt"><label for="Auto.Bouwjaar">Bouwjaar</label></dt>
+                <dd class="dd-dt"><input asp-for="Auto.Bouwjaar" class="inputdetails" /></dd>
+                <dt class="dd-dt"><label for="Auto.Banden">Banden</label></dt>
+                <dd class="dd-dt"><input asp-for="Auto.Banden" class="inputdetails" /></dd>
             </dl>
         </div>
         &nbsp;
         <div class="div-right">
 
             <dl class="dl-horizontal">
-                <dt class="dd-dt"><label for="Auto.OlieInhoud">Olie inhoud</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="Auto.OlieInhoud"></dd>
-                <dt class="dd-dt"><label for="Auto.CylinderInhoud">Cylinder inhoud</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="Auto.CylinderInhoud"></dd>
-                <dt class="dd-dt"><label for="Auto.VermogenKw">Vermogen (KW)</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="Auto.VermogenKw"></dd>
-                <dt class="dd-dt"><label for="Auto.MotorCode">Motorcode</label></dt><dd class="dd-dt"><input class="inputdetails" asp-for="Auto.MotorCode"></dd>
+                <dt class="dd-dt"><label for="Auto.OlieInhoud">Olie inhoud</label></dt>
+                <dd class="dd-dt"><input class="inputdetails" asp-for="Auto.OlieInhoud"></dd>
+                <dt class="dd-dt"><label for="Auto.CylinderInhoud">Cylinder inhoud</label></dt>
+                <dd class="dd-dt"><input class="inputdetails" asp-for="Auto.CylinderInhoud"></dd>
+                <dt class="dd-dt"><label for="Auto.VermogenKw">Vermogen (KW)</label></dt>
+                <dd class="dd-dt"><input class="inputdetails" asp-for="Auto.VermogenKw"></dd>
+                <dt class="dd-dt"><label for="Auto.MotorCode">Motorcode</label></dt>
+                <dd class="dd-dt"><input class="inputdetails" asp-for="Auto.MotorCode"></dd>
             </dl>
         </div>
     </div>
@@ -47,7 +56,7 @@
         <th>Merk</th>
         <th>Bestel nummers</th>
     </tr>
-    @foreach (Domain.Onderdeel onderdeel in Model.OnderdelenVoorAuto)
+    @foreach (Domain.Onderdeel onderdeel in Model.OnderdelenVoorAuto.OrderBy(x => x.Beschrijving))
     {
         string toDisplay = "";
         @foreach (Domain.OnderdeelBestelnummer bestelnummer in onderdeel.Bestelnummers)

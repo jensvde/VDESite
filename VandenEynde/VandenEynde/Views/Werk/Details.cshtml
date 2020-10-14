@@ -7,10 +7,10 @@
     Layout = "_Layout";
 }
 @{ 
-    string splitted = Model.Datum.ToShortDateString();
-    string toDisplay = "Werk van " + splitted + " voor " + Model.Auto.Naam;
+    string DateToDisplay = Model.Datum.Day + "/" + Model.Datum.Month + "/" + Model.Datum.Year;
+    string toDisplay = "Werk van " + DateToDisplay + " voor " + Model.Auto.Naam;
 }
-<h2>@toDisplay</h2>
+<h2>@toDisplay</h2><a class="btn btn-primary float-right" asp-area="" asp-controller="Werk" asp-action="Add">Nieuw</a>
 <p>Bekijk of bewerk dit werk item.</p>
 <form asp-controller="Werk" asp-action="Edit" asp-route-id="@ViewBag.AutoId" method="post">
     <div class="div-container">

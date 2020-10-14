@@ -19,7 +19,7 @@ namespace VandenEynde.Controllers
             OnderdeelIndexModel model = new OnderdeelIndexModel();
                 var OnderdelenQuery = mgr.GetOnderdelen();
                 List<Onderdeel> Onderdelen = new List<Onderdeel>();
-                foreach (Onderdeel onderdeel in OnderdelenQuery)
+                foreach (Onderdeel onderdeel in OnderdelenQuery.OrderBy(x => x.Beschrijving).OrderBy(x => x.Merk))
                 {
                     if (id == 0)
                     {
@@ -51,6 +51,21 @@ namespace VandenEynde.Controllers
                     }
                     count++;
                 }
+            string[] checker = new string[model.Onderdelen.Count+1];
+            count = 0;
+                foreach(Onderdeel onderdeel in model.Onderdelen)
+            {
+                if (!checker.Contains(onderdeel.Merk))
+                {
+                    model.GelesecteerdeMerken[count] =
+                        new OnderdeelModel
+                        {
+                            Name = onderdeel.Merk
+                        } ;
+                    checker[count] = onderdeel.Merk;
+                    count++;
+                }
+            }
             return model;
         }
         public OnderdeelController()

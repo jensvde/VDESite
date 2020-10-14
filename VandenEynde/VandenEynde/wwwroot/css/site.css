@@ -192,3 +192,30 @@ dd {
     .text-center-auto:hover {
         text-align: center;
     }
+.sortLeft {
+    width: 80%;
+    float: left;
+}
+
+.sortRight {
+    width: 25%;
+    float: right;
+}
+
+.sortBar {
+    width: 100%;
+    display: flex;
+    background: #f1f1f1;
+    border-radius: 50px;
+    /*box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);*/
+    padding: 10px;
+}
+
+.sortBarCheckBoxes {
+    text-align: center; /* center checkbox horizontally */
+    vertical-align: middle; /* center checkbox vertically */
+}
+
+.card {
+    max-width: 350px;
+}
