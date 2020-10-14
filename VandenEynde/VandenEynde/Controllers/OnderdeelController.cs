@@ -1,5 +1,6 @@
 ﻿using BL;
 using Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -9,7 +10,7 @@ using VandenEynde.Models;
 
 namespace VandenEynde.Controllers
 {
-    // [Authorize]
+     [Authorize]
     public class OnderdeelController : Controller
     {
         private IAutoManager mgr;

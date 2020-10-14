@@ -1,12 +1,13 @@
 ﻿using BL;
 using Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using VandenEynde.Models;
 
 namespace VandenEynde.Controllers
 {
-    //   [Authorize]
+     [Authorize]
     public class AutoController : Controller
     {
         private IAutoManager mgr;

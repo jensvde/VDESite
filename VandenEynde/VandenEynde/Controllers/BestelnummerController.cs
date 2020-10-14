@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace VandenEynde.Controllers
 {
+    [Authorize]
     public class BestelnummerController : Controller
     {
         private IAutoManager mgr = new AutoManager();
