@@ -274,7 +274,11 @@ namespace VandenEynde.Controllers
             toAdd.Bestelnummers = new List<OnderdeelBestelnummer>();
             ///////////////////////////////////////////////////////////////////////////
             ///////////////////////////////BESTELNUMMERS///////////////////////////////
-            
+            if (model.Bestelnummer != null)
+            {
+                toAdd.Bestelnummers.Add(model.Bestelnummer);
+            }
+
             if (model.NieuweBestelnummers != null)
             {
                 
