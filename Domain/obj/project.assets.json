@@ -284,11 +284,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\GitHub\\VDESite\\VandenEynde\\Domain\\Domain.csproj",
+      "projectUniqueName": "E:\\GitHub\\VDESite\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "E:\\GitHub\\VDESite\\VandenEynde\\Domain\\Domain.csproj",
+      "projectPath": "E:\\GitHub\\VDESite\\Domain\\Domain.csproj",
       "packagesPath": "C:\\Users\\Jens\\.nuget\\packages\\",
-      "outputPath": "E:\\GitHub\\VDESite\\VandenEynde\\Domain\\obj\\",
+      "outputPath": "E:\\GitHub\\VDESite\\Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Jens\\AppData\\Roaming\\NuGet\\NuGet.Config",

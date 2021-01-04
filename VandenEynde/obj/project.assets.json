@@ -5589,11 +5589,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\GitHub\\VDESite\\VandenEynde\\VandenEynde\\VandenEynde.csproj",
+      "projectUniqueName": "E:\\GitHub\\VDESite\\VandenEynde\\VandenEynde.csproj",
       "projectName": "VandenEynde",
-      "projectPath": "E:\\GitHub\\VDESite\\VandenEynde\\VandenEynde\\VandenEynde.csproj",
+      "projectPath": "E:\\GitHub\\VDESite\\VandenEynde\\VandenEynde.csproj",
       "packagesPath": "C:\\Users\\Jens\\.nuget\\packages\\",
-      "outputPath": "E:\\GitHub\\VDESite\\VandenEynde\\VandenEynde\\obj\\",
+      "outputPath": "E:\\GitHub\\VDESite\\VandenEynde\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Jens\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5610,8 +5610,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "E:\\GitHub\\VDESite\\VandenEynde\\BL\\BL.csproj": {
-              "projectPath": "E:\\GitHub\\VDESite\\VandenEynde\\BL\\BL.csproj"
+            "E:\\GitHub\\VDESite\\BL\\BL.csproj": {
+              "projectPath": "E:\\GitHub\\VDESite\\BL\\BL.csproj"
             }
           }
         }

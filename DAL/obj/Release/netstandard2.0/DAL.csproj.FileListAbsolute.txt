@@ -22,3 +22,15 @@ E:\GitHub\VDESite\VandenEynde\DAL\obj\Release\netstandard2.0\DAL.csproj.CoreComp
 E:\GitHub\VDESite\VandenEynde\DAL\obj\Release\netstandard2.0\DAL.csproj.CopyComplete
 E:\GitHub\VDESite\VandenEynde\DAL\obj\Release\netstandard2.0\DAL.dll
 E:\GitHub\VDESite\VandenEynde\DAL\obj\Release\netstandard2.0\DAL.pdb
+E:\GitHub\VDESite\DAL\bin\Release\netstandard2.0\DAL.deps.json
+E:\GitHub\VDESite\DAL\bin\Release\netstandard2.0\DAL.dll
+E:\GitHub\VDESite\DAL\bin\Release\netstandard2.0\DAL.pdb
+E:\GitHub\VDESite\DAL\bin\Release\netstandard2.0\Domain.dll
+E:\GitHub\VDESite\DAL\bin\Release\netstandard2.0\Domain.pdb
+E:\GitHub\VDESite\DAL\obj\Release\netstandard2.0\DAL.csprojAssemblyReference.cache
+E:\GitHub\VDESite\DAL\obj\Release\netstandard2.0\DAL.AssemblyInfoInputs.cache
+E:\GitHub\VDESite\DAL\obj\Release\netstandard2.0\DAL.AssemblyInfo.cs
+E:\GitHub\VDESite\DAL\obj\Release\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+E:\GitHub\VDESite\DAL\obj\Release\netstandard2.0\DAL.csproj.CopyComplete
+E:\GitHub\VDESite\DAL\obj\Release\netstandard2.0\DAL.dll
+E:\GitHub\VDESite\DAL\obj\Release\netstandard2.0\DAL.pdb

@@ -26,3 +26,17 @@ E:\GitHub\VDESite\VandenEynde\BL\obj\Release\netstandard2.0\BL.csproj.CoreCompil
 E:\GitHub\VDESite\VandenEynde\BL\obj\Release\netstandard2.0\BL.csproj.CopyComplete
 E:\GitHub\VDESite\VandenEynde\BL\obj\Release\netstandard2.0\BL.dll
 E:\GitHub\VDESite\VandenEynde\BL\obj\Release\netstandard2.0\BL.pdb
+E:\GitHub\VDESite\BL\bin\Release\netstandard2.0\BL.deps.json
+E:\GitHub\VDESite\BL\bin\Release\netstandard2.0\BL.dll
+E:\GitHub\VDESite\BL\bin\Release\netstandard2.0\BL.pdb
+E:\GitHub\VDESite\BL\bin\Release\netstandard2.0\DAL.dll
+E:\GitHub\VDESite\BL\bin\Release\netstandard2.0\Domain.dll
+E:\GitHub\VDESite\BL\bin\Release\netstandard2.0\DAL.pdb
+E:\GitHub\VDESite\BL\bin\Release\netstandard2.0\Domain.pdb
+E:\GitHub\VDESite\BL\obj\Release\netstandard2.0\BL.csprojAssemblyReference.cache
+E:\GitHub\VDESite\BL\obj\Release\netstandard2.0\BL.AssemblyInfoInputs.cache
+E:\GitHub\VDESite\BL\obj\Release\netstandard2.0\BL.AssemblyInfo.cs
+E:\GitHub\VDESite\BL\obj\Release\netstandard2.0\BL.csproj.CoreCompileInputs.cache
+E:\GitHub\VDESite\BL\obj\Release\netstandard2.0\BL.csproj.CopyComplete
+E:\GitHub\VDESite\BL\obj\Release\netstandard2.0\BL.dll
+E:\GitHub\VDESite\BL\obj\Release\netstandard2.0\BL.pdb

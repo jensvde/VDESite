@@ -1328,11 +1328,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\GitHub\\VDESite\\VandenEynde\\DAL\\DAL.csproj",
+      "projectUniqueName": "E:\\GitHub\\VDESite\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "E:\\GitHub\\VDESite\\VandenEynde\\DAL\\DAL.csproj",
+      "projectPath": "E:\\GitHub\\VDESite\\DAL\\DAL.csproj",
       "packagesPath": "C:\\Users\\Jens\\.nuget\\packages\\",
-      "outputPath": "E:\\GitHub\\VDESite\\VandenEynde\\DAL\\obj\\",
+      "outputPath": "E:\\GitHub\\VDESite\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Jens\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1349,8 +1349,8 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
-            "E:\\GitHub\\VDESite\\VandenEynde\\Domain\\Domain.csproj": {
-              "projectPath": "E:\\GitHub\\VDESite\\VandenEynde\\Domain\\Domain.csproj"
+            "E:\\GitHub\\VDESite\\Domain\\Domain.csproj": {
+              "projectPath": "E:\\GitHub\\VDESite\\Domain\\Domain.csproj"
             }
           }
         }

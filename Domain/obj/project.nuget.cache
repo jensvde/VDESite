@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KWIRzjZZfxWL1Hk0ArhNputWEAzJx05s2OQnuG9b/OufKolswV7Z0MQ4UYjO5VaGhGQsj7dzSJpShmdn9/A3UQ==",
+  "dgSpecHash": "FYH2hyzBSJ3Ng1TMAdcER/5LV0rhpX9T+ph4ysiRi6CU3CbdT/8KoJT7Se++ocdceQ6Ea4RNvytQ+f1qXZc8UA==",
   "success": true,
-  "projectFilePath": "E:\\GitHub\\VDESite\\VandenEynde\\Domain\\Domain.csproj",
+  "projectFilePath": "E:\\GitHub\\VDESite\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jens\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Jens\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",

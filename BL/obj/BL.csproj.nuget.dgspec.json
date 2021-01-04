@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\GitHub\\VDESite\\VandenEynde\\BL\\BL.csproj": {}
+    "E:\\GitHub\\VDESite\\BL\\BL.csproj": {}
   },
   "projects": {
-    "E:\\GitHub\\VDESite\\VandenEynde\\BL\\BL.csproj": {
+    "E:\\GitHub\\VDESite\\BL\\BL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\GitHub\\VDESite\\VandenEynde\\BL\\BL.csproj",
+        "projectUniqueName": "E:\\GitHub\\VDESite\\BL\\BL.csproj",
         "projectName": "BL",
-        "projectPath": "E:\\GitHub\\VDESite\\VandenEynde\\BL\\BL.csproj",
+        "projectPath": "E:\\GitHub\\VDESite\\BL\\BL.csproj",
         "packagesPath": "C:\\Users\\Jens\\.nuget\\packages\\",
-        "outputPath": "E:\\GitHub\\VDESite\\VandenEynde\\BL\\obj\\",
+        "outputPath": "E:\\GitHub\\VDESite\\BL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Jens\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "E:\\GitHub\\VDESite\\VandenEynde\\DAL\\DAL.csproj": {
-                "projectPath": "E:\\GitHub\\VDESite\\VandenEynde\\DAL\\DAL.csproj"
+              "E:\\GitHub\\VDESite\\DAL\\DAL.csproj": {
+                "projectPath": "E:\\GitHub\\VDESite\\DAL\\DAL.csproj"
               },
-              "E:\\GitHub\\VDESite\\VandenEynde\\Domain\\Domain.csproj": {
-                "projectPath": "E:\\GitHub\\VDESite\\VandenEynde\\Domain\\Domain.csproj"
+              "E:\\GitHub\\VDESite\\Domain\\Domain.csproj": {
+                "projectPath": "E:\\GitHub\\VDESite\\Domain\\Domain.csproj"
               }
             }
           }
@@ -68,14 +68,14 @@
         }
       }
     },
-    "E:\\GitHub\\VDESite\\VandenEynde\\DAL\\DAL.csproj": {
+    "E:\\GitHub\\VDESite\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\GitHub\\VDESite\\VandenEynde\\DAL\\DAL.csproj",
+        "projectUniqueName": "E:\\GitHub\\VDESite\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "E:\\GitHub\\VDESite\\VandenEynde\\DAL\\DAL.csproj",
+        "projectPath": "E:\\GitHub\\VDESite\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\Jens\\.nuget\\packages\\",
-        "outputPath": "E:\\GitHub\\VDESite\\VandenEynde\\DAL\\obj\\",
+        "outputPath": "E:\\GitHub\\VDESite\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Jens\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -92,8 +92,8 @@
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "E:\\GitHub\\VDESite\\VandenEynde\\Domain\\Domain.csproj": {
-                "projectPath": "E:\\GitHub\\VDESite\\VandenEynde\\Domain\\Domain.csproj"
+              "E:\\GitHub\\VDESite\\Domain\\Domain.csproj": {
+                "projectPath": "E:\\GitHub\\VDESite\\Domain\\Domain.csproj"
               }
             }
           }
@@ -141,14 +141,14 @@
         }
       }
     },
-    "E:\\GitHub\\VDESite\\VandenEynde\\Domain\\Domain.csproj": {
+    "E:\\GitHub\\VDESite\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\GitHub\\VDESite\\VandenEynde\\Domain\\Domain.csproj",
+        "projectUniqueName": "E:\\GitHub\\VDESite\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "E:\\GitHub\\VDESite\\VandenEynde\\Domain\\Domain.csproj",
+        "projectPath": "E:\\GitHub\\VDESite\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Jens\\.nuget\\packages\\",
-        "outputPath": "E:\\GitHub\\VDESite\\VandenEynde\\Domain\\obj\\",
+        "outputPath": "E:\\GitHub\\VDESite\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Jens\\AppData\\Roaming\\NuGet\\NuGet.Config",
