@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Download";
+    Layout = "_Layout";
+}
+
+<h2>Exporteer database</h2>
+<p>Download hier de huidige applicatie (db) of user (user_db) database.</p>
+<br />
+<br />
+<h3>Applicatie database</h3>
+<p>Download hier de db.db file.</p>
+<a class="btn btn-dark" href='@Url.Action("DbExport", "Database", new { Database = "db" }, null)'>Download</a>
+<br />
+<br />
+<br />
+<br />
+<h3>Gebruikers database</h3>
+<p>Download hier de db_users.db file.</p>
+<a class="btn btn-dark" href='@Url.Action("DbExport", "Database", new { Database = "db_users" }, null)'>Download</a>

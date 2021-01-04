@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "k4h+z8DY1Y8er61OB14uJxJh3nFIvHGI5MV7cE5boNWHS226ArWDa1ZBZgaHRJgcaYbAbrVjslKTxWj/2/kMzw==",
+  "dgSpecHash": "KWIRzjZZfxWL1Hk0ArhNputWEAzJx05s2OQnuG9b/OufKolswV7Z0MQ4UYjO5VaGhGQsj7dzSJpShmdn9/A3UQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jens\\source\\repos\\VDESite\\VandenEynde\\Domain\\Domain.csproj",
+  "projectFilePath": "E:\\GitHub\\VDESite\\VandenEynde\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jens\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\jens\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
-    "C:\\Users\\jens\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512"
+    "C:\\Users\\Jens\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Jens\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Jens\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }

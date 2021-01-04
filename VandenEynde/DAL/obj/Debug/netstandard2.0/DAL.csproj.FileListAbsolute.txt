@@ -10,3 +10,15 @@ C:\Users\jens\source\repos\VDESite\VandenEynde\DAL\obj\Debug\netstandard2.0\DAL.
 C:\Users\jens\source\repos\VDESite\VandenEynde\DAL\obj\Debug\netstandard2.0\DAL.csproj.CopyComplete
 C:\Users\jens\source\repos\VDESite\VandenEynde\DAL\obj\Debug\netstandard2.0\DAL.dll
 C:\Users\jens\source\repos\VDESite\VandenEynde\DAL\obj\Debug\netstandard2.0\DAL.pdb
+E:\GitHub\VDESite\VandenEynde\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+E:\GitHub\VDESite\VandenEynde\DAL\bin\Debug\netstandard2.0\DAL.dll
+E:\GitHub\VDESite\VandenEynde\DAL\bin\Debug\netstandard2.0\DAL.pdb
+E:\GitHub\VDESite\VandenEynde\DAL\bin\Debug\netstandard2.0\Domain.dll
+E:\GitHub\VDESite\VandenEynde\DAL\bin\Debug\netstandard2.0\Domain.pdb
+E:\GitHub\VDESite\VandenEynde\DAL\obj\Debug\netstandard2.0\DAL.csprojAssemblyReference.cache
+E:\GitHub\VDESite\VandenEynde\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+E:\GitHub\VDESite\VandenEynde\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+E:\GitHub\VDESite\VandenEynde\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+E:\GitHub\VDESite\VandenEynde\DAL\obj\Debug\netstandard2.0\DAL.csproj.CopyComplete
+E:\GitHub\VDESite\VandenEynde\DAL\obj\Debug\netstandard2.0\DAL.dll
+E:\GitHub\VDESite\VandenEynde\DAL\obj\Debug\netstandard2.0\DAL.pdb

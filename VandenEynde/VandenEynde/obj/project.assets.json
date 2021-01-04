@@ -5584,23 +5584,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jens\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Jens\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jens\\source\\repos\\VDESite\\VandenEynde\\VandenEynde\\VandenEynde.csproj",
+      "projectUniqueName": "E:\\GitHub\\VDESite\\VandenEynde\\VandenEynde\\VandenEynde.csproj",
       "projectName": "VandenEynde",
-      "projectPath": "C:\\Users\\jens\\source\\repos\\VDESite\\VandenEynde\\VandenEynde\\VandenEynde.csproj",
-      "packagesPath": "C:\\Users\\jens\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jens\\source\\repos\\VDESite\\VandenEynde\\VandenEynde\\obj\\",
+      "projectPath": "E:\\GitHub\\VDESite\\VandenEynde\\VandenEynde\\VandenEynde.csproj",
+      "packagesPath": "C:\\Users\\Jens\\.nuget\\packages\\",
+      "outputPath": "E:\\GitHub\\VDESite\\VandenEynde\\VandenEynde\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\jens\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jens\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5612,9 +5608,10 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\jens\\source\\repos\\VDESite\\VandenEynde\\BL\\BL.csproj": {
-              "projectPath": "C:\\Users\\jens\\source\\repos\\VDESite\\VandenEynde\\BL\\BL.csproj"
+            "E:\\GitHub\\VDESite\\VandenEynde\\BL\\BL.csproj": {
+              "projectPath": "E:\\GitHub\\VDESite\\VandenEynde\\BL\\BL.csproj"
             }
           }
         }
@@ -5627,6 +5624,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
             "target": "Package",
@@ -5663,12 +5661,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[3.1.2, 3.1.2]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -5677,7 +5669,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Upload";
+    Layout = "_Layout";
+}
+
+<h2>Importeer database</h2>
+<p>Upload hier uw db of db_users.db file die de bestaande database moet vervangen.</p>
+<br />
+<br />
+<h3>Applicatie database</h3>
+<p>Upload hier de db.db file.</p>
+<form method="post" enctype="multipart/form-data" asp-action="uploadDb" asp-controller="Database">
+    <input type="file" name="formFile" />
+    <button type="submit">Upload</button>
+</form>
+<br />
+<br />
+<h3>Gebruikers database</h3>
+<p>Upload hier de db_users.db file.</p>
+<form method="post" enctype="multipart/form-data" asp-action="uploadDbUsers" asp-controller="Database">
+    <input type="file" name="formFile" />
+    <button type="submit">Upload</button>
+</form>

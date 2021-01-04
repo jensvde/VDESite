@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Instellingen";
+    Layout = "_Layout";
+}
+
+<h2>@ViewBag.Title</h2>
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <h2>Database downloaden</h2>
+        <a class="btn btn-dark" asp-area="" asp-controller="Database" asp-action="Download">Exporteer</a>
+    </div>
+    <div class="col-md-4">
+        <h2>Database uploaden</h2>
+        <a class="btn btn-dark" asp-area="" asp-controller="Database" asp-action="Upload">Importeer</a>
+    </div>
+    <div class="col-md-4">
+        <h2>Gebruiker details</h2>
+        <a class="btn btn-dark" asp-area="Identity" asp-page="/Account/Manage/Index">Bekijk uw profiel</a>
+    </div>
+</div>

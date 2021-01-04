@@ -19,7 +19,7 @@ namespace DAL.EF
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlite("Data Source=VandenEyndeDb_EFCodeFirst.db");
-            optionsBuilder.UseMySql("server=localhost;database=db_vde;user=winkel;password=Winkeltje@1234");
+            optionsBuilder.UseMySql("server=localhost;database=db;user=winkel;password=Winkeltje@1234");
 
 
 
@@ -70,7 +70,7 @@ namespace DAL.EF
                     context.Database.EnsureDeleted();
                 // Create database and initial data if needed
                 if (context.Database.EnsureCreated())
-                   // Seed(context);
+                 Seed(context);
                 hasRunDuringAppExecution = true;
             }
         }
