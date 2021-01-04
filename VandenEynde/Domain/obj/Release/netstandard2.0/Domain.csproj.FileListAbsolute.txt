@@ -7,3 +7,12 @@ C:\Users\jens\source\repos\VDESite\VandenEynde\Domain\obj\Release\netstandard2.0
 C:\Users\jens\source\repos\VDESite\VandenEynde\Domain\obj\Release\netstandard2.0\Domain.csproj.CoreCompileInputs.cache
 C:\Users\jens\source\repos\VDESite\VandenEynde\Domain\obj\Release\netstandard2.0\Domain.dll
 C:\Users\jens\source\repos\VDESite\VandenEynde\Domain\obj\Release\netstandard2.0\Domain.pdb
+E:\GitHub\VDESite\VandenEynde\Domain\bin\Release\netstandard2.0\Domain.deps.json
+E:\GitHub\VDESite\VandenEynde\Domain\bin\Release\netstandard2.0\Domain.dll
+E:\GitHub\VDESite\VandenEynde\Domain\bin\Release\netstandard2.0\Domain.pdb
+E:\GitHub\VDESite\VandenEynde\Domain\obj\Release\netstandard2.0\Domain.csprojAssemblyReference.cache
+E:\GitHub\VDESite\VandenEynde\Domain\obj\Release\netstandard2.0\Domain.AssemblyInfoInputs.cache
+E:\GitHub\VDESite\VandenEynde\Domain\obj\Release\netstandard2.0\Domain.AssemblyInfo.cs
+E:\GitHub\VDESite\VandenEynde\Domain\obj\Release\netstandard2.0\Domain.csproj.CoreCompileInputs.cache
+E:\GitHub\VDESite\VandenEynde\Domain\obj\Release\netstandard2.0\Domain.dll
+E:\GitHub\VDESite\VandenEynde\Domain\obj\Release\netstandard2.0\Domain.pdb
